@@ -1,8 +1,7 @@
-from django.conf.urls import url
+from django.conf.urls import include, url
 
 from accounts import views
 
 urlpatterns = [
-    # url(r'^$', views.home, name='home'),
-    # url(r'^aboutme/$', views.aboutme, name='aboutme'),
+    url(r'^', include('django.contrib.auth.urls')),
 ]

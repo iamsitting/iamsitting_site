@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block title %}Logged Out{% endblock %}
+{% block content %}
+<section class="Post">
+  <h4>Logged out!</h4>  
+  <a href="{{login_url}}">Click here to login again.</a>
+</section>
+{% endblock %}
