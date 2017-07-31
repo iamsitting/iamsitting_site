@@ -20,6 +20,7 @@
 		<!-- Wrapper -->
 			<div id="wrapper" class="fade-in">
 
+        {% if request.path == home_url %}
 				<!-- Intro -->
 					<div id="intro">
 						<h1>This is<br />
@@ -29,6 +30,7 @@
 							<li><a href="#header" class="button icon solo fa-arrow-down scrolly">Continue</a></li>
 						</ul>
 					</div>
+          {% endif %}
 
 				<!-- Header -->
 					<header id="header">
@@ -39,8 +41,6 @@
 					<nav id="nav">
 						<ul class="links">
               <li {% if request.path == home_url %} class="active" {% endif %}><a href="{{ home_url }}">Home</a></li>
-							<li><a href="generic.html">Generic Page</a></li>
-							<li><a href="elements.html">Elements Reference</a></li>
               <li {% if request.path == aboutme_url %} class="active" {% endif %}><a href="{{ aboutme_url }} ">About Me</a></li>
 						</ul>
 						<ul class="icons">
