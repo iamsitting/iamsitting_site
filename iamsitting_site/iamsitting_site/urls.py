@@ -19,6 +19,7 @@ from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 urlpatterns = [
     url(r'^', include('home_app.urls')),
+    url(r'^', include('blog.urls')),
     #admin urls
     url(r'^admin/', admin.site.urls),
 ]

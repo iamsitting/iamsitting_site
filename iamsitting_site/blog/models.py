@@ -1,0 +1,31 @@
+from django.db import models
+
+""" blog models.py
+The blog module handles all blog related data
+DATA MODELS:
+      - Blog: Blog post with author, title, content, etc.
+      - Category: Blog Category (music, education, sports, etc.)
+"""
+
+class Blog(models.Model):
+  author = models.CharField(max_length=30)
+  title = models.CharField(max_length=100, unique=True)
+  slug = models.SlugField(max_length=100, unique=True)
+  body = models.TextField()
+  posted_date = models.DateField(db_index=True, auto_now_add=True)
+  category = models.ForeignKey('blog.Category')
+
+  def __unicode__(self):
+    return '%s' % self.title
+
+  #@permalink
+  #def get_absolute_url(self):
+  #  return ('view_blog_post', None, { 'slug': self.slug })
+
+class Category(models.Mode):
+  title = models.CharField(max_length=100, db_index=True)
+  slug = models.SlugField(max_length=100, db_index=True)
+  
+  def __unicode__(self):
+    return '%s' % self.title
+
