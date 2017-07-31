@@ -34,6 +34,7 @@ ALLOWED_HOSTS = [secrets.ec2_public_ip]
 INSTALLED_APPS = [
     #modules
     'accounts',
+    'blog',
     'home_app',
     #django
     'django.contrib.admin',
