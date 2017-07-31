@@ -5,6 +5,8 @@
 	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
 -->
 {% load staticfiles %}
+{% url 'home' as home_url %}
+{% url 'aboutme' as aboutme_url %}
 <html>
 	<head>
     <title>iamsitting.com | {% block title %} {% endblock %} </title>
@@ -30,16 +32,16 @@
 
 				<!-- Header -->
 					<header id="header">
-            <a href="{% url 'aboutme' %}" class="logo">About Me</a>
+            <a href="{{aboutme_url}}" class="logo">About Me</a>
 					</header>
 
 				<!-- Nav -->
 					<nav id="nav">
 						<ul class="links">
-              <li class="active"><a href="{% url 'home' %}">Home</a></li>
+              <li {% if request.path == home_url %} class="active" {% endif %}><a href="{{ home_url }}">Home</a></li>
 							<li><a href="generic.html">Generic Page</a></li>
 							<li><a href="elements.html">Elements Reference</a></li>
-              <li><a href="{% url 'aboutme' %}">About Me</a></li>
+              <li {% if request.path == aboutme_url %} class="active" {% endif %}><a href="{{ aboutme_url }} ">About Me</a></li>
 						</ul>
 						<ul class="icons">
 							<li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
@@ -108,7 +110,7 @@
 					</div>
 
 			</div>
-
+      
 		<!-- Scripts -->
       <script src="{% static 'home_app/js/jquery.min.js' %}"></script>
       <script src="{% static 'home_app/js/jquery.scrollex.min.js' %}"></script>
@@ -116,5 +118,20 @@
       <script src="{% static 'home_app/js/skel.min.js' %}"></script>
       <script src="{% static 'home_app/js/util.js' %}"></script>
       <script src="{% static 'home_app/js/main.js' %}"></script>
+    
+    <!-- More scripts -->
+    <script>
+    $(document).ready(function() {
+    /*$(".nav li").on("click", function() {
+            $(".nav li").removeClass("active");
+                  $(this).addClass("active");
+                      });*/
+    $('li > a').click(function() {
+          $('li').removeClass();
+              $(this).parent().addClass('active');
+    });
+    });
+    </script>
+
 	</body>
 </html>
