@@ -22,7 +22,7 @@ class Blog(models.Model):
   #def get_absolute_url(self):
   #  return ('view_blog_post', None, { 'slug': self.slug })
 
-class Category(models.Mode):
+class Category(models.Model):
   title = models.CharField(max_length=100, db_index=True)
   slug = models.SlugField(max_length=100, db_index=True)
   
