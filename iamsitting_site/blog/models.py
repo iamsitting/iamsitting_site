@@ -1,31 +1,73 @@
+from django.contrib.auth.models import User
 from django.db import models
+from django.db.models import permalink
+from django.template.defaultfilters import slugify
 
 """ blog models.py
 The blog module handles all blog related data
 DATA MODELS:
-      - Blog: Blog post with author, title, content, etc.
+      - Post: Blog post with author, title, content, etc.
+      - Comment: Posts mays have comments
       - Category: Blog Category (music, education, sports, etc.)
 """
 
-class Blog(models.Model):
-  author = models.CharField(max_length=30)
+class Post(models.Model):
+
+  POST_STATUS = (
+    ('A', 'Approved'),
+    ('P', 'Pending'),
+    ('D', 'Denied'),
+  )
+
+  author = models.ForeignKey(User)
   title = models.CharField(max_length=100, unique=True)
-  slug = models.SlugField(max_length=100, unique=True)
+  slug = models.SlugField(unique=True)
   body = models.TextField()
-  posted_date = models.DateField(db_index=True, auto_now_add=True)
+  status = models.CharField(max_length=1, choices=POST_STATUS, default='P')
+  posted_on = models.DateField(db_index=True, auto_now_add=True)
   category = models.ForeignKey('blog.Category')
 
-  def __unicode__(self):
+  def __str__(self):
     return '%s' % self.title
 
-  #@permalink
-  #def get_absolute_url(self):
-  #  return ('view_blog_post', None, { 'slug': self.slug })
+  @permalink
+  def get_absolute_url(self):
+    return ('view_blog_post', None, { 'slug': self.slug })
+
+  def save(self, *args, **kwargs):
+    if not self.slug:
+      self.slug = slugify(self.title)
+    super(Post, self).save(*args, **kwargs) 
+
+class Comment(models.Model):
+
+  COMM_STATUS = (
+    ('A', 'Approved'),
+    ('P', 'Pending'),
+    ('D', 'Denied'),
+  )
+  name = models.CharField(max_length=40)
+  email = models.EmailField(max_length=75)
+  text = models.TextField()
+  status = models.CharField(max_length=1, choices=COMM_STATUS, default='P')
+  post = models.ForeignKey(Post)
+  created_on = models.DateTimeField(auto_now_add=True)
+
+  def __unicode__(self):
+    return self.text
 
 class Category(models.Model):
-  title = models.CharField(max_length=100, db_index=True)
-  slug = models.SlugField(max_length=100, db_index=True)
+  title = models.CharField(max_length=100, primary_key=True, unique=True)
+  slug = models.SlugField(unique=True)
   
-  def __unicode__(self):
+  def __str__(self):
     return '%s' % self.title
 
+  @permalink
+  def get_absolute_url(self):
+    return ('view_blog_category', None, { 'slug': self.slug })
+  
+  def save(self, *args, **kwargs):
+    if not self.slug:
+      self.slug = slugify(self.title)
+    super(Category, self).save(*args, **kwargs)
