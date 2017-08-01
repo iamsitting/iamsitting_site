@@ -32,7 +32,11 @@ class Post(models.Model):
 
   @permalink
   def get_absolute_url(self):
-    return ('view_blog_post', None, { 'slug': self.slug })
+    return reverse('blog:post', {'slug': self.slug})
+
+  @permalink
+  def get_update_url(self):
+    return reverse('blog:editpost', {'slug':self.slug})
 
   def save(self, *args, **kwargs):
     if not self.slug:
@@ -62,10 +66,6 @@ class Category(models.Model):
   
   def __str__(self):
     return '%s' % self.title
-
-  @permalink
-  def get_absolute_url(self):
-    return ('view_blog_category', None, { 'slug': self.slug })
   
   def save(self, *args, **kwargs):
     if not self.slug:
