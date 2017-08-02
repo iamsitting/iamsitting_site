@@ -2,10 +2,10 @@
 <!-- Massively by HTML5 UP html5up.net | @ajlkn Free for personal and commercial
 use under the CCA 3.0 license (html5up.net/license) -->
 {% load staticfiles %}
-{% url 'home' as home_url %}
-{% url 'aboutme' as aboutme_url %}
-{% url 'login' as login_url %}
-{% url 'logout' as logout_url %}
+{% url 'home:home' as home_url %}
+{% url 'home:aboutme' as aboutme_url %}
+{% url 'accounts:login' as login_url %}
+{% url 'accounts:logout' as logout_url %}
 {% url 'blog:new-post' as newpost_url %}
 {% url 'blog:post-requests' as post_requests_url %}
 <html>
@@ -182,22 +182,6 @@ use under the CCA 3.0 license (html5up.net/license) -->
         <script src="{% static 'home_app/js/skel.min.js' %}"></script>
         <script src="{% static 'home_app/js/util.js' %}"></script>
         <script src="{% static 'home_app/js/main.js' %}"></script>
-
-        <!-- More scripts -->
-        <script>
-            $(document).ready(function () {
-                /*$(".nav li").on("click", function() {
-            $(".nav li").removeClass("active");
-                  $(this).addClass("active");
-                      });*/
-                $('li > a').click(function () {
-                    $('li').removeClass();
-                    $(this)
-                        .parent()
-                        .addClass('active');
-                });
-            });
-        </script>
 
     </body>
 </html>

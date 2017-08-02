@@ -18,8 +18,8 @@ from django.contrib import admin
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 urlpatterns = [
-    url(r'^', include('home_app.urls')),
-    url(r'^accounts/', include('accounts.urls')),
+    url(r'^', include('home_app.urls', namespace="home")),
+    url(r'^accounts/', include('accounts.urls', namespace="accounts")),
     url(r'^blog/', include('blog.urls', namespace="blog")),
     #admin urls
     url(r'^admin/', admin.site.urls),
