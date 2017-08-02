@@ -6,7 +6,7 @@ key.pub
 *.pot
 *.py[co]
 .tox/
-secrets.py
+*secrets.py
 
 __pycache__
 MANIFEST

@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block title %}{{page_title}}{% endblock %}
+{% block content %}
+ <section>
+        <header>
+          <h2>{{page_title|safe}}</h2>
+        </header>
+        <!-- Form -->
+        <form method="post" action="#" class="alt">
+          {% csrf_token %}
+            <div class="row uniform">
+                <div class="12u$">
+                  <td>{{ form.title.label_tag}}</td>
+                  <td>{{ form.title }}</td>
+                </div>
+                <div class="12u$">
+                  <td>{{ form.body.label_tag }}</td>
+                  <td>{{ form.body }}</td>
+                </div>
+                <div class="12u$">
+                  <td>{{ form.category.label_tag }}</td>
+                  <td>{{ form.category }}</td>
+                </div>
+                <div class="12u$">
+                    <ul class="actions">
+                      <li><input type="submit" value="{{button_value|safe}}" class="special"/></li>
+                    </ul>
+                </div>
+            </div>
+        </form>
+        <hr />
+        <!--Table-->
+        <h2>Previous posts</h2>
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>Status</th>
+                <th>Title</th>
+                <th>Category</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for post in posts %}
+              <tr>
+                <td>
+                  {% if post.status == "A" %}
+                  <a href="{{post.get_absolute_url}}">
+                  {% else %}
+                  <a href="{{post.get_update_url}}">
+                  {% endif %}
+                  {{post.status|safe}}</a>
+                </td>
+                <td>{{post.title|safe}}</td>
+                <td>{{post.category|safe}}</td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+    </section>
+
+{% endblock %}
