@@ -2,6 +2,7 @@ from django.contrib.auth.models import User
 from django.db import models
 from django.db.models import permalink
 from django.template.defaultfilters import slugify
+from django.core.urlresolvers import reverse
 
 """ blog models.py
 The blog module handles all blog related data
@@ -30,13 +31,11 @@ class Post(models.Model):
   def __str__(self):
     return '%s' % self.title
 
-  @permalink
   def get_absolute_url(self):
-    return reverse('blog:post', {'slug': self.slug})
+    return reverse('blog:post', kwargs={'slug': self.slug})
 
-  @permalink
   def get_update_url(self):
-    return reverse('blog:edit-post', {'slug':self.slug})
+    return reverse('blog:edit-post', kwargs={'slug':self.slug})
 
   def save(self, *args, **kwargs):
     if not self.slug:

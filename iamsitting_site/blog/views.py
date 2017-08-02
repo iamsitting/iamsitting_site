@@ -66,3 +66,8 @@ def modify_post_status(request, status, id):
   post.status = status
   post.save()
   return redirect(reverse('blog:post-requests'))
+
+def view_post(request, slug):
+  post = Post.objects.get(slug=slug)
+  ctx = {'post':post}
+  return render(request, 'blog/view_post.html', context=ctx)

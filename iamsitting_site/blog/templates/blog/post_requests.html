@@ -15,11 +15,11 @@
                       <tbody>
                         {% for post in pending_posts %}
                         <tr>
-                          <td>{{post.title|safe}}</td>
+                          <td><a href="{{post.get_update_url}}">{{post.title|safe}}</a></td>
                           <td>{{post.category|safe}}</td>
                           <td>
-                            <a href="{% url 'blog:modify-post-status' 'A' post.id %}" class="button special icon fa-search">Approve</a>
-                            <a href="{% url 'blog:modify-post-status' 'D' post.id %}" class="button special icon fa-search">Deny</a>
+                            <a href="{% url 'blog:modify-post-status' 'A' post.id %}" class="button special small icon fa-check">Approve</a>
+                            <a href="{% url 'blog:modify-post-status' 'D' post.id %}" class="button special small icon fa-ban">Deny</a>
                           </td>
                         </tr>
                         {% endfor %}
