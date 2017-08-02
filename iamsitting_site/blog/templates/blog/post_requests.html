@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block title %}Post Requests{% endblock %}
+{% block content %}
+                <h2>Post Requests</h2>
+                  <div class="table-wrapper">
+                    <table>
+                      <thead>
+                        <tr>
+                          <th>Title</th>
+                          <th>Category</th>
+                          <th>Respond</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {% for post in pending_posts %}
+                        <tr>
+                          <td>{{post.title|safe}}</td>
+                          <td>{{post.category|safe}}</td>
+                          <td>
+                            <a href="{% url 'blog:modify-post-status' 'A' post.id %}" class="button special icon fa-search">Approve</a>
+                            <a href="{% url 'blog:modify-post-status' 'D' post.id %}" class="button special icon fa-search">Deny</a>
+                          </td>
+                        </tr>
+                        {% endfor %}
+                      </tbody>
+                    </table>
+                  </div>
+{% endblock %}

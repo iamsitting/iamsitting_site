@@ -36,7 +36,7 @@ class Post(models.Model):
 
   @permalink
   def get_update_url(self):
-    return reverse('blog:editpost', {'slug':self.slug})
+    return reverse('blog:edit-post', {'slug':self.slug})
 
   def save(self, *args, **kwargs):
     if not self.slug:

@@ -6,7 +6,8 @@ use under the CCA 3.0 license (html5up.net/license) -->
 {% url 'aboutme' as aboutme_url %}
 {% url 'login' as login_url %}
 {% url 'logout' as logout_url %}
-{% url 'blog:newpost' as newpost_url %}
+{% url 'blog:new-post' as newpost_url %}
+{% url 'blog:post-requests' as post_requests_url %}
 <html>
     <head>
         <title>iamsitting.com |
@@ -61,9 +62,14 @@ use under the CCA 3.0 license (html5up.net/license) -->
                     <li {% if request.path == newpost_url %} class="active" {% endif %}> 
                         <a href="{{ newpost_url }}">New Post</a>
                     </li>
-                        <li>
-                          <a href="{{logout_url}}">Logout</a>
-                        </li>
+                    {% if user.is_superuser %}
+                    <li {% if request.path == mps_url %} class="active" {% endif %}>
+                      <a href="{{ post_requests_url }}">Post Requests</a>
+                    </li>
+                    {% endif %}
+                    <li>
+                      <a href="{{logout_url}}">Logout</a>
+                    </li>
                     {% endif %}
                     <li {% if request.path == aboutme_url %} class="active" {% endif %}>
                         <a href="{{ aboutme_url }} ">About Me</a>

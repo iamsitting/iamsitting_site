@@ -27,7 +27,7 @@ class NewPost(CreateView):
     new_post = form.save(commit=False)
     new_post.author = User.objects.get(id = self.request.user.id)
     new_post.save()
-    return HttpResponseRedirect(reverse('blog:newpost'))
+    return HttpResponseRedirect(reverse('blog:new-post'))
 
 class EditPost(UpdateView):
   model = Post
@@ -49,5 +49,20 @@ class EditPost(UpdateView):
     if post.status == 'D':
       post.status = 'P'
     post.save()
-    return HttpResponseRedirect(reverse('blog:newpost'))
+    return HttpResponseRedirect(reverse('blog:new-post'))
 
+class PostRequests(TemplateView):
+  model = Post
+  template_name = 'blog/post_requests.html'
+
+  def get_context_data(self, **kwargs):
+    ctx = super(PostRequests, self).get_context_data(**kwargs)
+    pending_posts = Post.objects.filter(status='P')
+    ctx['pending_posts'] = pending_posts
+    return ctx
+
+def modify_post_status(request, status, id):
+  post = get_object_or_404(Post, pk=id)
+  post.status = status
+  post.save()
+  return redirect(reverse('blog:post-requests'))
