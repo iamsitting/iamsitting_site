@@ -26,6 +26,8 @@ class Post(models.Model):
   body = models.TextField()
   status = models.CharField(max_length=1, choices=POST_STATUS, default='P')
   posted_on = models.DateField(db_index=True, auto_now_add=True)
+  subtitle = models.CharField(max_length=140)
+  preview = models.CharField(max_length=160)
   category = models.ForeignKey('blog.Category')
 
   def __str__(self):
@@ -40,6 +42,7 @@ class Post(models.Model):
   def save(self, *args, **kwargs):
     if not self.slug:
       self.slug = slugify(self.title)
+    self.preview = self.body[:157]+'...'
     super(Post, self).save(*args, **kwargs) 
 
 class Comment(models.Model):

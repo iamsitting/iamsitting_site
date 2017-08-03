@@ -17,7 +17,7 @@ class NewPost(CreateView):
 
   def get_context_data(self, **kwargs):
     ctx = super(NewPost, self).get_context_data(**kwargs)
-    posts = Post.objects.all().order_by("-posted_on")
+    posts = Post.objects.all().filter(author=self.request.user).order_by("-posted_on")
     ctx['posts'] = posts
     ctx['page_title'] = 'New Post'
     ctx['button_value'] = 'Submit'
@@ -38,7 +38,7 @@ class EditPost(UpdateView):
   def get_context_data(self, **kwargs):
     ctx = super(EditPost, self).get_context_data(**kwargs)
     post = self.get_object()
-    pending_posts = Post.objects.exclude(id=post.id).filter(status='P')
+    pending_posts = Post.objects.exclude(id=post.id).filter(author__id=self.request.user.id).filter(status='P')
     ctx['posts'] = pending_posts
     ctx['page_title'] = 'Edit Post'
     ctx['button_value'] = 'Edit'

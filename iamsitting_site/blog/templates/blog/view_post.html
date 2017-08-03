@@ -3,16 +3,17 @@
 {% block title %}{{post.title|safe}}{% endblock %}
 {% block content %}
 <!-- Post -->
-              <section class="post">
-                <header class="major">
-                  <span class="date">{{post.posted_on|date}}</span>
-                  <h1>{{post.title|safe}}</h1>
-                  <p>Aenean ornare velit lacus varius enim ullamcorper proin aliquam<br />
-                  facilisis ante sed etiam magna interdum congue. Lorem ipsum dolor<br />
-                  amet nullam sed etiam veroeros.</p>
-                </header>
-                <div class="image main"><img src="images/pic01.jpg" alt="" /></div>
-                <p>{{post.body|safe}}</p>
-              </section>
+<section class="post">
+  <header class="major">
+    <span class="date">{{post.posted_on|date}}</span>
+    <h1>{{post.title|safe}}</h1>
+    <p>{{post.subtitle|safe}}</p>
+  </header>
+  <div class="image main"><img src="images/pic01.jpg" alt="" /></div>
+  <p>{{post.body|safe}}<br>
+  - <strong>{{post.author.username|safe}}</strong>
+  </p>
+
+</section>
 
 {% endblock %}

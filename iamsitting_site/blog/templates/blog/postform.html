@@ -15,9 +15,19 @@
                   <td>{{ form.title }}</td>
                 </div>
                 <div class="12u$">
+                  <td>{{ form.subtitle.label_tag}}</td>
+                  <td>{{ form.subtitle }}</td>
+                </div>
+                <div class="12u$">
                   <td>{{ form.body.label_tag }}</td>
                   <td>{{ form.body }}</td>
                 </div>
+                {% if user.is_superuser and page_title == 'Edit Post' %}
+                <div class="12u$">
+                  <td>{{ form.preview.label_tag }}</td>
+                  <td>{{ form.preview }}</td>
+                </div>
+                {% endif %}
                 <div class="12u$">
                   <td>{{ form.category.label_tag }}</td>
                   <td>{{ form.category }}</td>
