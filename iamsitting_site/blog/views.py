@@ -11,6 +11,9 @@ from django.db.models import Q
 from blog.forms import PostForm, CommentForm
 from blog.models import Post, Comment, Category
 
+import logging
+
+debug = logging.getLogger('debugger')
 class NewPost(CreateView):
   model = Post
   template_name = 'blog/postform.html'
@@ -25,9 +28,11 @@ class NewPost(CreateView):
     return ctx
 
   def form_valid(self, form):
+    debug.debug('test1')
     new_post = form.save(commit=False)
     new_post.author = User.objects.get(id = self.request.user.id)
-    if request.user.is_superuser:
+    if self.request.user.is_superuser:
+      debug.debug('test2')
       new_post.status = 'A'
     new_post.save()
     return HttpResponseRedirect(reverse('blog:new-post'))

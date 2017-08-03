@@ -3,7 +3,7 @@ from django.db import models
 from django.db.models import permalink
 from django.template.defaultfilters import slugify
 from django.core.urlresolvers import reverse
-
+import logging
 """ blog models.py
 The blog module handles all blog related data
 DATA MODELS:
@@ -11,7 +11,7 @@ DATA MODELS:
       - Comment: Posts mays have comments
       - Category: Blog Category (music, education, sports, etc.)
 """
-
+debug = logging.getLogger('debugger')
 class Post(models.Model):
 
   POST_STATUS = (

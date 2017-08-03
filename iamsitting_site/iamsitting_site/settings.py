@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 """
 
 import os
+import sys
 import secrets
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -139,3 +140,33 @@ STATIC_ROOT = os.path.join(BASE_DIR, "static/")
 
 # Redirect to home URL after login (Default redirects to /accounts/profile/)
 LOGIN_REDIRECT_URL = '/'
+
+# Logging Configuration
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'feedback': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'filename': os.path.join(BASE_DIR, "logs/feedback.log"),
+        },
+        'user_debug': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'filename': os.path.join(BASE_DIR, "logs/debug.log"),
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers':['feedback'],
+            'level': 'DEBUG',
+            'proagate': True,
+        },
+        'debugger': {
+            'handlers': ['user_debug', 'feedback'],
+            'level': 'DEBUG',
+            'propagate': True,
+        },
+    },
+}

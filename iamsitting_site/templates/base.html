@@ -63,7 +63,7 @@ use under the CCA 3.0 license (html5up.net/license) -->
                         <a href="{{ newpost_url }}">New Post</a>
                     </li>
                     {% if user.is_superuser %}
-                    <li {% if request.path == mps_url %} class="active" {% endif %}>
+                    <li {% if request.path == post_requests_url %} class="active" {% endif %}>
                       <a href="{{ post_requests_url }}">Post Requests</a>
                     </li>
                     {% endif %}
