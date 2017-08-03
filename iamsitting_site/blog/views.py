@@ -6,6 +6,7 @@ from django.views.generic.edit import CreateView, FormView, UpdateView
 from django.views.generic import TemplateView
 from django.core.urlresolvers import reverse
 from django.http import HttpResponseRedirect
+from django.db.models import Q
 
 from blog.forms import PostForm, CommentForm
 from blog.models import Post, Comment, Category
@@ -26,6 +27,8 @@ class NewPost(CreateView):
   def form_valid(self, form):
     new_post = form.save(commit=False)
     new_post.author = User.objects.get(id = self.request.user.id)
+    if request.user.is_superuser:
+      new_post.status = 'A'
     new_post.save()
     return HttpResponseRedirect(reverse('blog:new-post'))
 
@@ -38,7 +41,7 @@ class EditPost(UpdateView):
   def get_context_data(self, **kwargs):
     ctx = super(EditPost, self).get_context_data(**kwargs)
     post = self.get_object()
-    pending_posts = Post.objects.exclude(id=post.id).filter(author__id=self.request.user.id).filter(status='P')
+    pending_posts = Post.objects.exclude(id=post.id).filter(Q(author=self.request.user)&Q(status='P'))
     ctx['posts'] = pending_posts
     ctx['page_title'] = 'Edit Post'
     ctx['button_value'] = 'Edit'
@@ -50,7 +53,7 @@ class EditPost(UpdateView):
       post.status = 'P'
     post.save()
     return HttpResponseRedirect(reverse('blog:new-post'))
-
+# TODO: set permissions
 class PostRequests(TemplateView):
   model = Post
   template_name = 'blog/post_requests.html'
@@ -66,7 +69,7 @@ def modify_post_status(request, status, id):
   post.status = status
   post.save()
   return redirect(reverse('blog:post-requests'))
-
+#TODO: set permissions
 def view_post(request, slug):
   post = Post.objects.get(slug=slug)
   ctx = {'post':post}

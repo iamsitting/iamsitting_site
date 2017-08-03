@@ -3,7 +3,7 @@
 use under the CCA 3.0 license (html5up.net/license) -->
 {% load staticfiles %}
 {% url 'home:home' as home_url %}
-{% url 'home:aboutme' as aboutme_url %}
+{% url 'home:about_me' as about_me_url %}
 {% url 'accounts:login' as login_url %}
 {% url 'accounts:logout' as logout_url %}
 {% url 'blog:new-post' as newpost_url %}
@@ -71,8 +71,8 @@ use under the CCA 3.0 license (html5up.net/license) -->
                       <a href="{{logout_url}}">Logout</a>
                     </li>
                     {% endif %}
-                    <li {% if request.path == aboutme_url %} class="active" {% endif %}>
-                        <a href="{{ aboutme_url }} ">About Me</a>
+                    <li {% if request.path == about_me_url %} class="active" {% endif %}>
+                        <a href="{{ about_me_url }} ">About Me</a>
                     </li>
                 </ul>
                 <ul class="icons">
