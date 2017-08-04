@@ -2,8 +2,6 @@
 {% load staticfiles %}
 {% block title %}Home{% endblock %}
 {% block content %}
-<!-- TODO: Add Pagination-->
-<!-- TODO: Add Permission-->
 <!-- Featured Post -->
 {% if posts.number == 1 %}
   <article class="post featured">
@@ -34,7 +32,7 @@
       <a href="#" class="image fit"><img src="{% static 'home_app/images/pic02.jpg' %}" alt="" /></a>
       <p>{{post.preview|safe}}</p>
       <ul class="actions">
-        <li><a href="#" class="button">Full Story</a></li>
+        <li><a href="{{post.get_absolute_url}}" class="button">Full Story</a></li>
       </ul>
     </article>
     {% endfor %}

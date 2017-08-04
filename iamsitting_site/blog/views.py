@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.contrib.auth.models import User
+from django.contrib.auth.decorators import user_passes_test
 
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views.generic.edit import CreateView, FormView, UpdateView
@@ -56,7 +57,7 @@ class EditPost(UpdateView):
       post.status = 'P'
     post.save()
     return HttpResponseRedirect(reverse('blog:new-post'))
-# TODO: set permissions
+
 class PostRequests(TemplateView):
   model = Post
   template_name = 'blog/post_requests.html'
@@ -67,12 +68,13 @@ class PostRequests(TemplateView):
     ctx['pending_posts'] = pending_posts
     return ctx
 
+@user_passes_test(lambda u: u.is_superuser)
 def modify_post_status(request, status, id):
   post = get_object_or_404(Post, pk=id)
   post.status = status
   post.save()
   return redirect(reverse('blog:post-requests'))
-#TODO: set permissions
+
 def view_post(request, slug):
   post = Post.objects.get(slug=slug)
   ctx = {'post':post}
