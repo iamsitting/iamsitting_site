@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block title %}Cycle X-Pro{% endblock %}
+{% block extra_head %}
+<style>
+iframe {
+  width: 100%;
+}
+.aspect-ratio {
+  position: relative;
+  width: 100%;
+  height: 0;
+  padding-bottom: 51%;
+}
+
+.aspect-ratio iframe {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0; top: 0;
+}
+</style>
+{% endblock %}
+{% block content %}
+<dl>
+  <header>
+    <h1><a class="scrolly" href="#cxp-video">Cycle X-Pro</a></h1>
+    <p>The next generation cycling gear -- brought to you by <strong>Team 14</strong></p>
+  </header>
+  <dt>Risk Reduction</dt>
+  <dd>
+    <p>Equipped with necessary lighting and an emergency response protocol.</p>
+  </dd>
+  <dt>Real-Time Data</dt>
+  <dd>
+    <p>Provides and plots speed, acceleration, shock in real-time.</p>
+  </dd>
+  <dt>Bluetooth 4.0</dt>
+  <dd>
+    <p>Controlled with an Android App with Bluetooth 4.0.</p>
+  </dd>
+  <dt>Data Backup</dt>
+  <dd>
+    <p>Data may be backed up and viewed on a webserver.</p>
+  </dd>
+  <dt>Train &amp Race</dt>
+  <dd>
+    <p>Connects to other X-Pros for remote data viewing for training and racing purposes.</p>
+  </dd>
+</dl>
+<section>
+<div class="aspect-ratio"> 
+  <iframe id="cxp-video" src="https://www.youtube.com/embed/3eQmIMyYT1I" frameborder="0" allowfullscreen></iframe>
+</div>
+</section>
+{% endblock %}

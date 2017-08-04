@@ -36,3 +36,6 @@ def home(request):
 
 def about_me(request):
   return render(request, 'home_app/about_me.html')
+
+def cycle_x_pro(request):
+  return render(request, 'home_app/cycle_x_pro.html')
