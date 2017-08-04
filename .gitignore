@@ -19,5 +19,5 @@ tests/.coverage
 build/
 tests/report/
 migrations/
-static/
+images/
 logs/
