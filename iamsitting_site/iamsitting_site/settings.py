@@ -27,7 +27,7 @@ SECRET_KEY = secrets.prod_secret
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = [secrets.ec2_public_ip]
+ALLOWED_HOSTS = [secrets.ec2_public_ip, 'iamsitting.com']
 
 
 # Application definition
