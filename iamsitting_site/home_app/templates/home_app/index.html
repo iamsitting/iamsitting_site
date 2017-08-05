@@ -2,8 +2,8 @@
 {% load staticfiles %}
 {% block title %}Home{% endblock %}
 {% block content %}
+{% if featured_post %}
 <!-- Featured Post -->
-{% if posts.number == 1 %}
   <article class="post featured">
     <header class="major">
       <span class="date">{{featured_post.posted_on|date}}</span>
@@ -17,7 +17,6 @@
       <li><a href="{{featured_post.get_absolute_url}}" class="button big">Full Story</a></li>
     </ul>
   </article>
-{% endif %}
 
 <!-- Posts -->
   <section class="posts">
@@ -67,4 +66,9 @@
     </div>
     {% endif %}
   </footer>
+{% else %}
+<header class="major">
+  <h2> No Posts </h2>
+</header>
+{% endif %}
 {% endblock %}

@@ -5,13 +5,12 @@ from blog.models import Post
 
 # Create your views here.
 def home(request):
-  FEATURED_SLUG = 'the-roman-empire'
+  FEATURED_SLUG = 'the-roman-empire' #TODO: Add this feature on front-end
   featured_post = None
   all_posts = Post.objects.filter(status='A').order_by('-posted_on')
-  ctx = {'page_type': 'no_post'}
   posts = None
+  ctx = {}
   if len(all_posts) > 0:
-    ctx['page_type'] = 'one_post'
     if all_posts.filter(slug=FEATURED_SLUG).exists():
       featured_post = all_posts.get(slug=FEATURED_SLUG)
     else:
@@ -20,7 +19,6 @@ def home(request):
     all_posts = all_posts.exclude(pk=featured_post.pk) #len is less one
 
     if len(all_posts) > 0:
-      ctx['page_type'] = 'multi_post'
       paginator = Paginator(all_posts, 6)
       page = request.GET.get('page')
       try:
