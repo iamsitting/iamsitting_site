@@ -21,6 +21,7 @@ urlpatterns = [
     url(r'^', include('home_app.urls', namespace="home")),
     url(r'^accounts/', include('accounts.urls', namespace="accounts")),
     url(r'^blog/', include('blog.urls', namespace="blog")),
+    url(r'^tinymce/', include('tinymce.urls')),
     #admin urls
     url(r'^admin/', admin.site.urls),
 ]

@@ -3,7 +3,10 @@ from django.db import models
 from django.db.models import permalink
 from django.template.defaultfilters import slugify
 from django.core.urlresolvers import reverse
+
 import logging
+
+from tinymce.models import HTMLField
 """ blog models.py
 The blog module handles all blog related data
 DATA MODELS:
@@ -23,7 +26,7 @@ class Post(models.Model):
   author = models.ForeignKey(User)
   title = models.CharField(max_length=100, unique=True)
   slug = models.SlugField(unique=True)
-  body = models.TextField()
+  body = HTMLField()
   status = models.CharField(max_length=1, choices=POST_STATUS, default='P')
   posted_on = models.DateField(db_index=True, auto_now_add=True)
   subtitle = models.CharField(max_length=140)
