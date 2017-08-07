@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load staticfiles %}
+{% load widget_tweaks %}
 {% block extra_head %}
 <!--Tinymce Text-Editor (Must be in Head Tag) -->
   <script src="{% static 'blog/js/tinymce/tinymce.min.js' %}"></script>
@@ -25,7 +26,7 @@
                 </div>
                 <div class="12u$">
                   <td>{{ form.body.label_tag }}</td>
-                  <td>{{ form.body }}</td>
+                  <td>{{ form.body|add_class:"mceEditor" }}</td>
                 </div>
                 {% if user.is_superuser and page_title == 'Edit Post' %}
                 <div class="12u$">

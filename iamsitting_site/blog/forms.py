@@ -12,3 +12,6 @@ class CommentForm(forms.ModelForm):
   class Meta:
     model = Comment
     exclude = ['post']
+
+class LocalImageForm(forms.ModelForm):
+  file = forms.ImageField()

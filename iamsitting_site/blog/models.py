@@ -84,3 +84,6 @@ class Category(models.Model):
     if not self.slug:
       self.slug = slugify(self.title)
     super(Category, self).save(*args, **kwargs)
+
+class LocalImage(models.Model):
+  file = models.ImageField(upload_to='uploaded_images/') 
