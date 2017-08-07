@@ -4,6 +4,7 @@ from django.db.models import permalink
 from django.template.defaultfilters import slugify
 from django.core.urlresolvers import reverse
 
+import datetime
 import logging
 import re
 
@@ -30,6 +31,7 @@ class Post(models.Model):
   body = HTMLField()
   status = models.CharField(max_length=1, choices=POST_STATUS, default='P')
   posted_on = models.DateField(db_index=True, auto_now_add=True)
+  post_date = models.DateField(default=datetime.date.today())
   subtitle = models.CharField(max_length=140)
   preview = models.CharField(max_length=500)
   category = models.ForeignKey('blog.Category')

@@ -3,10 +3,11 @@
 {% block title %}Home{% endblock %}
 {% block content %}
 {% if featured_post %}
+  {% if not posts.has_previous %}
 <!-- Featured Post -->
   <article class="post featured">
     <header class="major">
-      <span class="date">{{featured_post.posted_on|date}}</span>
+      <span class="date">{{featured_post.post_date|date}}</span>
       <h2>
         <a href="{{featured_post.get_absolute_url}}">{{featured_post.title}}</a>
       </h2>
@@ -17,13 +18,13 @@
       <li><a href="{{featured_post.get_absolute_url}}" class="button big">Full Story</a></li>
     </ul>
   </article>
-
+  {% endif %}
 <!-- Posts -->
   <section class="posts">
     {% for post in posts %}
     <article>
       <header>
-        <span class="date">{{post.posted_on|date}}</span>
+        <span class="date">{{post.post_date|date}}</span>
         <h2>
           <a href="{{post.get_absolute_url}}">{{post.title}}</a>
         </h2>

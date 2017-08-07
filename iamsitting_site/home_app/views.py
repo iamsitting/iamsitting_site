@@ -9,7 +9,7 @@ debug = logging.getLogger('debugger')
 def home(request):
   FEATURED_SLUG = 'the-roman-empire' #TODO: Add this feature on front-end
   featured_post = None
-  all_posts = Post.objects.filter(status='A').order_by('-posted_on')
+  all_posts = Post.objects.filter(status='A').order_by('-post_date')
   posts = None
   ctx = {}
   if len(all_posts) > 0:
