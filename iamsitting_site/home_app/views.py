@@ -2,7 +2,9 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.shortcuts import render
 
 from blog.models import Post
+import logging
 
+debug = logging.getLogger('debugger')
 # Create your views here.
 def home(request):
   FEATURED_SLUG = 'the-roman-empire' #TODO: Add this feature on front-end
@@ -15,7 +17,7 @@ def home(request):
       featured_post = all_posts.get(slug=FEATURED_SLUG)
     else:
       featured_post = all_posts.first()
-
+    
     all_posts = all_posts.exclude(pk=featured_post.pk) #len is less one
 
     if len(all_posts) > 0:

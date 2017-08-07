@@ -3,7 +3,11 @@ from django.db import models
 from django.db.models import permalink
 from django.template.defaultfilters import slugify
 from django.core.urlresolvers import reverse
+
 import logging
+import re
+
+from tinymce.models import HTMLField
 """ blog models.py
 The blog module handles all blog related data
 DATA MODELS:
@@ -23,11 +27,11 @@ class Post(models.Model):
   author = models.ForeignKey(User)
   title = models.CharField(max_length=100, unique=True)
   slug = models.SlugField(unique=True)
-  body = models.TextField()
+  body = HTMLField()
   status = models.CharField(max_length=1, choices=POST_STATUS, default='P')
   posted_on = models.DateField(db_index=True, auto_now_add=True)
   subtitle = models.CharField(max_length=140)
-  preview = models.CharField(max_length=160)
+  preview = models.CharField(max_length=500)
   category = models.ForeignKey('blog.Category')
 
   def __str__(self):
@@ -39,10 +43,17 @@ class Post(models.Model):
   def get_update_url(self):
     return reverse('blog:edit-post', kwargs={'slug':self.slug})
 
+  def get_preview(self):
+    cleanr = re.compile('<.*?>')
+    cleantext = re.sub(cleanr, '', self.body) #remove html tags
+    splitted = cleantext.split()[:20]
+    preview = ' '.join(splitted)+'...'
+    return preview
+
   def save(self, *args, **kwargs):
     if not self.slug:
       self.slug = slugify(self.title)
-    self.preview = self.body[:157]+'...'
+    self.preview = self.get_preview()
     super(Post, self).save(*args, **kwargs) 
 
 class Comment(models.Model):
@@ -73,3 +84,6 @@ class Category(models.Model):
     if not self.slug:
       self.slug = slugify(self.title)
     super(Category, self).save(*args, **kwargs)
+
+class LocalImage(models.Model):
+  file = models.ImageField(upload_to='uploaded_images/') 

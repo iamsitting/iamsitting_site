@@ -5,8 +5,9 @@ from django.contrib.auth.decorators import user_passes_test
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views.generic.edit import CreateView, FormView, UpdateView
 from django.views.generic import TemplateView
+from django.views.decorators.csrf import csrf_protect, csrf_exempt
 from django.core.urlresolvers import reverse
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponse
 from django.db.models import Q
 
 from blog.forms import PostForm, CommentForm
@@ -74,6 +75,15 @@ def modify_post_status(request, status, id):
   post.status = status
   post.save()
   return redirect(reverse('blog:post-requests'))
+
+@csrf_exempt
+def upload_image(request):
+  if request.method == 'POST':
+    form = ImageUploadForm(request.POST, request.FILES)
+    if form.is_valid():
+      img = form.save(commit=False)
+      img.save()
+      return HttpResponse('image upload success')
 
 def view_post(request, slug):
   post = Post.objects.get(slug=slug)

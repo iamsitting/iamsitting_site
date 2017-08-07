@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'accounts',
     'blog',
     'home_app',
+    'rest_api',
     #django
     'django.contrib.admin',
     'django.contrib.auth',
@@ -46,6 +47,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     #3rd-party
     'django_extensions',
+    'tinymce',
+    'widget_tweaks',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
@@ -161,11 +165,16 @@ LOGGING = {
         'django': {
             'handlers':['feedback'],
             'level': 'DEBUG',
-            'proagate': True,
+            'propagate': True,
         },
         'debugger': {
             'handlers': ['user_debug', 'feedback'],
             'level': 'DEBUG',
+            'propagate': True,
+        },
+        'django.security.csrf': {
+            'handlers': ['feedback'],
+            'level': 'WARNING',
             'propagate': True,
         },
     },
