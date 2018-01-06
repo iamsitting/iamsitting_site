@@ -11,7 +11,6 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 """
 
 import os
-import sys
 import secrets
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -33,19 +32,19 @@ ALLOWED_HOSTS = [secrets.ec2_public_ip, 'iamsitting.com']
 # Application definition
 
 INSTALLED_APPS = [
-    #modules
+    # modules
     'accounts',
     'blog',
     'home_app',
     'rest_api',
-    #django
+    # django
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    #3rd-party
+    # 3rd-party
     'django_extensions',
     'tinymce',
     'widget_tweaks',
@@ -67,7 +66,7 @@ ROOT_URLCONF = 'iamsitting_site.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [(os.path.join(BASE_DIR, 'templates')),],
+        'DIRS': [(os.path.join(BASE_DIR, 'templates')), ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -87,10 +86,10 @@ WSGI_APPLICATION = 'iamsitting_site.wsgi.application'
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
 
 DATABASES = {
-    #'default': {
+    # 'default': {
     #    'ENGINE': 'django.db.backends.sqlite3',
     #    'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    #}
+    # }
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'iamsitting_site',
@@ -163,7 +162,7 @@ LOGGING = {
     },
     'loggers': {
         'django': {
-            'handlers':['feedback'],
+            'handlers': ['feedback'],
             'level': 'DEBUG',
             'propagate': True,
         },

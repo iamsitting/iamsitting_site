@@ -1,7 +1,8 @@
-from django.conf.urls import url, include
+from django.conf.urls import include, url
 from rest_framework import routers
-from rest_api.viewsets import LocalImageViewSet
+
 from rest_api import views
+from rest_api.viewsets import LocalImageViewSet
 
 router = routers.DefaultRouter()
 router.register('images', LocalImageViewSet, 'images')
@@ -12,4 +13,3 @@ urlpatterns = [
     url(r'^', include(router.urls)),
 #    url(r'^images', views.UploadLocalImage.as_view(), name='images'),
 ]
-

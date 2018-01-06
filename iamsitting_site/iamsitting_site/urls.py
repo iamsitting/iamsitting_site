@@ -23,7 +23,7 @@ urlpatterns = [
     url(r'^blog/', include('blog.urls', namespace="blog")),
     url(r'^tinymce/', include('tinymce.urls')),
     url(r'^api/', include('rest_api.urls', namespace='api')),
-    #admin urls
+    # admin urls
     url(r'^admin/', admin.site.urls),
 ]
 

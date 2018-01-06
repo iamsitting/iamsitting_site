@@ -22,3 +22,6 @@ migrations/
 images/
 logs/
 uploaded_images/
+
+*.sublime-project
+*.sublime-workspace

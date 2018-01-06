@@ -1,7 +1,8 @@
-from django.contrib.auth import login, authenticate
-from django.shortcuts import render, redirect
+from django.contrib.auth import authenticate, login
+from django.shortcuts import redirect, render
 
 from accounts.forms import SignUpForm
+
 
 def signup(request):
     if request.method == 'POST':
@@ -16,4 +17,3 @@ def signup(request):
     else:
         form = SignUpForm()
     return render(request, 'accounts/signup.html', {'form': form})
-
