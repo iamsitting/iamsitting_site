@@ -141,15 +141,14 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+STATIC_ROOT = os.path.join(BASE_DIR, "static")
+
 # Redirect to home URL after login (Default redirects to /accounts/profile/)
 LOGIN_REDIRECT_URL = '/'
 
 STATICFILES_DIRS = (
-    #os.path.join(BASE_DIR, '..', 'assets'),  # We do this so that djangos collectstatic copies or our bundles to the STATIC_ROOT or syncs them to whatever storage we use.
-    os.path.join(BASE_DIR, 'static'),
+    os.path.join(BASE_DIR, '..', 'assets'),  # We do this so that djangos collectstatic copies or our bundles to the STATIC_ROOT or syncs them to whatever storage we use.
 )
-
-STATIC_ROOT = ''
 
 WEBPACK_LOADER = {
     'DEFAULT': {

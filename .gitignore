@@ -22,6 +22,7 @@ migrations/
 images/
 logs/
 uploaded_images/
+iamsitting_site/static/
 
 *.sublime-project
 *.sublime-workspace

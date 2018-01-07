@@ -5,26 +5,42 @@ var BundleTracker = require('webpack-bundle-tracker')
 module.exports = {
   context: __dirname,
 
-  entry: './assets/js/index', // entry point of our app. assets/js/index.js should require other js modules and dependencies it needs
+  entry: {
+    main: [
+      './assets/js/index', // entry point of our app. assets/js/index.js should require other js modules and dependencies it needs
+      'webpack-dev-server/client?http://localhost:3000',
+      'webpack/hot/only-dev-server',
+    ]
+  },
 
   output: {
     path: path.resolve('./iamsitting_site/static/bundles/'),
     filename: "[name].js",
+    publicPath: 'http://localhost:3000/assets/bundles/',
   },
 
   plugins: [
     new BundleTracker({filename: './webpack-stats.json'}),
-     new webpack.IgnorePlugin(/^\.\/locale$/, /moment\/js$/), // to not to load all locales
+    new webpack.IgnorePlugin(/^\.\/locale$/, /moment\/js$/), // to not to load all locales
+    new webpack.HotModuleReplacementPlugin(),
+    new webpack.NoEmitOnErrorsPlugin(), // don't reload if there is an error
   ],
 
   module: {
-    loaders: [
-      { test: /\.jsx?$/, exclude: /node_modules/, loader: 'babel-loader'}, // to transform JSX into JS
+    rules: [
+      {
+        test: /\.js$/,
+        exclude: [/node_modules/],
+        use: [{
+          loader: 'babel-loader',
+          query: { 'plugins': ['react-hot-loader/babel'], 'presets': ['react'] },
+        }],
+},
     ],
   },
 
   resolve: {
     modules: ['node_modules', 'bower_components'],
-    //extensions: ['', '.js', '.jsx']
+    extensions: ['.js', '.jsx']
   },
 }
