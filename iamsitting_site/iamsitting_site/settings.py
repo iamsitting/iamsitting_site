@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 """
 
 import os
-import secrets
+from utils import secrets
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -32,6 +32,8 @@ ALLOWED_HOSTS = [secrets.ec2_public_ip, 'iamsitting.com']
 # Application definition
 
 INSTALLED_APPS = [
+    'webpack_loader',
+
     # modules
     'accounts',
     'blog',
@@ -139,10 +141,22 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-STATIC_ROOT = os.path.join(BASE_DIR, "static/")
-
 # Redirect to home URL after login (Default redirects to /accounts/profile/)
 LOGIN_REDIRECT_URL = '/'
+
+STATICFILES_DIRS = (
+    #os.path.join(BASE_DIR, '..', 'assets'),  # We do this so that djangos collectstatic copies or our bundles to the STATIC_ROOT or syncs them to whatever storage we use.
+    os.path.join(BASE_DIR, 'static'),
+)
+
+STATIC_ROOT = ''
+
+WEBPACK_LOADER = {
+    'DEFAULT': {
+        'BUNDLE_DIR_NAME': 'bundles/',
+        'STATS_FILE': os.path.join(BASE_DIR, '..', 'webpack-stats.json'),
+    }
+}
 
 # Logging Configuration
 LOGGING = {

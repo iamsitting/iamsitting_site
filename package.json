@@ -1,0 +1,29 @@
+{
+  "name": "iamsitting",
+  "version": "1.0.0",
+  "description": "Package for iamsitting.com",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/iamsitting/iamsitting_site.git"
+  },
+  "author": "Carlos Salamanca",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/iamsitting/iamsitting_site/issues"
+  },
+  "homepage": "https://github.com/iamsitting/iamsitting_site#readme",
+  "devDependencies": {
+    "babel": "^6.23.0",
+    "babel-loader": "^7.1.2",
+    "react": "^16.2.0",
+    "webpack": "^3.10.0",
+    "webpack-bundle-tracker": "^0.2.1"
+  },
+  "dependencies": {
+    "babel-core": "^6.26.0"
+  }
+}

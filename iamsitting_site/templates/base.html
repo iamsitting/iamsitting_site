@@ -1,3 +1,4 @@
+{% load render_bundle from webpack_loader %}
 <!DOCTYPE HTML>
 <!-- Massively by HTML5 UP html5up.net | @ajlkn Free for personal and commercial
 use under the CCA 3.0 license (html5up.net/license) -->
@@ -36,6 +37,8 @@ use under the CCA 3.0 license (html5up.net/license) -->
             {% if request.path == home_url %}
                 <!-- Intro -->
                 <div id="intro">
+                        <div id="react-app"></div>
+                        {% render_bundle 'main' %}
                     <h1>This is<br/>
                         @iamsitting</h1>
                     <p>Someone who has many interests, but most importantly, has meaning in his
