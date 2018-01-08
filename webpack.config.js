@@ -37,7 +37,7 @@ module.exports = {
         exclude: [/node_modules/],
         use: [{
           loader: 'babel-loader',
-          query: { 'plugins': ['react-hot-loader/babel'], 'presets': ['react'] },
+          query: { 'plugins': ['react-hot-loader/babel'], 'presets': ['env', 'react'] },
         }],
 },
     ],

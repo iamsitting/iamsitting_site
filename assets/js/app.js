@@ -1,8 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-const element = <h1>Hello, world!</h1>;
-const container = document.getElementById(
-  'react-app'
-);
-ReactDOM.render(element, container);
+var createReactClass = require('create-react-class');
+
+export var Hello = createReactClass({
+    render: function() {
+        return (
+            <h1>
+            Hello, React!
+            </h1>
+        )
+    }
+})
+
+console.log('hi2')

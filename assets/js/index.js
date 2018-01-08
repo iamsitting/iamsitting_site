@@ -1,14 +1,4 @@
-var React = require('react')
-var ReactDOM = require('react-dom')
+import 'scrolly'
+import Hello from './app'
 
-var Hello = React.createClass ({
-    render: function() {
-        return (
-            <h1>
-            Hello, React!
-            </h1>
-        )
-    }
-})
-
-ReactDOM.render(<Hello />, document.getElementById('react-app'))
+ReactDOM.render(<Hello />, document.getElementById("react-app"))
