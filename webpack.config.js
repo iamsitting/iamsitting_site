@@ -16,7 +16,7 @@ module.exports = {
   output: {
     path: path.resolve('./iamsitting_site/static/bundles/'),
     filename: "[name].js",
-    publicPath: 'http://localhost:3000/assets/bundles/',
+    publicPath: 'http://localhost:3000/iamsitting_site/static/bundles/',
   },
 
   plugins: [
@@ -24,12 +24,16 @@ module.exports = {
     new webpack.IgnorePlugin(/^\.\/locale$/, /moment\/js$/), // to not to load all locales
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoEmitOnErrorsPlugin(), // don't reload if there is an error
+    new webpack.ProvidePlugin({
+            $: "jquery",
+            jQuery: "jquery"
+        }),
   ],
 
   module: {
     rules: [
       {
-        test: /\.js$/,
+        test: /\.(js|jsx)$/,
         exclude: [/node_modules/],
         use: [{
           loader: 'babel-loader',

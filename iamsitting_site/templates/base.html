@@ -37,8 +37,6 @@ use under the CCA 3.0 license (html5up.net/license) -->
             {% if request.path == home_url %}
                 <!-- Intro -->
                 <div id="intro">
-                        <div id="react-app"></div>
-                        {% render_bundle 'main' %}
                     <h1>This is<br/>
                         @iamsitting</h1>
                     <p>Someone who has many interests, but most importantly, has meaning in his
@@ -108,6 +106,8 @@ use under the CCA 3.0 license (html5up.net/license) -->
 
             <!-- Main -->
             <div id="main">
+                <div id="react-app"></div>
+                {% render_bundle 'main' 'js' %}
                 {% block content %}{% endblock %}
             </div>
 
