@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'blog',
     'home_app',
     'rest_api',
+    'utils',
     # django
     'django.contrib.admin',
     'django.contrib.auth',
@@ -147,7 +148,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, "static")
 LOGIN_REDIRECT_URL = '/'
 
 STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, '..', 'assets'),  # We do this so that djangos collectstatic copies or our bundles to the STATIC_ROOT or syncs them to whatever storage we use.
+    os.path.join(BASE_DIR, '..', 'frontend'),  # We do this so that djangos collectstatic copies or our bundles to the STATIC_ROOT or syncs them to whatever storage we use.
 )
 
 WEBPACK_LOADER = {

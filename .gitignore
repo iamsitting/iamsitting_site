@@ -19,10 +19,10 @@ tests/.coverage
 build/
 tests/report/
 migrations/
-images/
 logs/
 uploaded_images/
-iamsitting_site/static/
+iamsitting_site/static/bundles
+webpack-stats.json
 
 *.sublime-project
 *.sublime-workspace

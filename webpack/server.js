@@ -1,9 +1,9 @@
 var webpack = require('webpack')
 var WebpackDevServer = require('webpack-dev-server')
-var config = require('./webpack.config')
+var devConfig = require('./webpack.development.config')
 
-new WebpackDevServer(webpack(config), {
-  publicPath: config.output.pubblicPath,
+new WebpackDevServer(webpack(devConfig), {
+  publicPath: devConfig.output.pubblicPath,
   hot: true,
   inline: true,
   historyApiFallback: true,

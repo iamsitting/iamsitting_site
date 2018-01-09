@@ -13,4 +13,4 @@ export var Hello = createReactClass({
     }
 })
 
-console.log('hi2')
+console.log('hi3')
