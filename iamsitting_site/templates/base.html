@@ -19,9 +19,7 @@ use under the CCA 3.0 license (html5up.net/license) -->
         <meta
             name="viewport"
             content="width=device-width, initial-scale=1, user-scalable=no"/>
-        {# {% render_bundle 'main' 'css'%} #}
-        <link rel="stylesheet" href="{% static 'home_app/css/main.css' %}"/>
-        <noscript><link rel="stylesheet" href="{% static 'home_app/css/noscript.css' %}"/></noscript>
+        {% render_bundle 'main' 'css' %}
         {% render_bundle 'main' 'js' %}
         {% block extra_head %}{% endblock %}
     </head>

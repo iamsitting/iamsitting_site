@@ -14,7 +14,7 @@ var devConfig = {
   },  //-entry
   
   output: {
-    publicPath: 'http://localhost:3000/iamsitting_site/static/bundles/',
+    publicPath: 'http://localhost:3000/static/bundles/',
   },  //-output
 
   devtool: 'cheap-module-eval-source-map',
@@ -33,6 +33,12 @@ var devConfig = {
           },
           {
             loader: 'css-loader',
+            options: {
+              sourceMap: true
+            }
+          },
+          {
+            loader: 'resolve-url-loader',
             options: {
               sourceMap: true
             }

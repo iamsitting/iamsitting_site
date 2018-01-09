@@ -38,7 +38,7 @@ module.exports = {
         ]
       }, //js, jsx
       {
-        test: /\.woff2?$|\.ttf$|\.eot$|\.svg$|\.png$|\.gif$/,
+        test: /\.woff2?$|\.ttf$|\.eot$|\.svg$|\.png$|\.jpg$|\.gif$/,
         loader: "file-loader"
       }
     ],

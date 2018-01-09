@@ -1,5 +1,7 @@
-import './utils'
-import './home'
+import 'base_theme/sass/main.scss'
+import 'base_theme/sass/noscript.scss'
+import 'base_theme/js/utils'
+import 'base_theme/js/home'
 console.log('hi0')
 import Hello from './app'
 console.log('hi4')
