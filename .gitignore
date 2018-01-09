@@ -23,6 +23,7 @@ logs/
 uploaded_images/
 iamsitting_site/static/bundles
 webpack-stats.json
+package-lock.json
 
 *.sublime-project
 *.sublime-workspace
