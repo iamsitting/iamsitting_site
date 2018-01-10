@@ -6,6 +6,7 @@ from django.core.management.base import BaseCommand
 class Command(BaseCommand):
 
   exclude = [
+    'admin',
     'tiny_mce',
     'rest_framework',
     'django_tinymce',
