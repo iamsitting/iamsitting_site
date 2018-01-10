@@ -21,7 +21,7 @@ tests/report/
 migrations/
 logs/
 uploaded_images/
-iamsitting_site/static/bundles
+iamsitting_site/static/
 webpack-stats.json
 package-lock.json
 

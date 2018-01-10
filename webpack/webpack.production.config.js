@@ -15,7 +15,6 @@ var prodConfig = {
       },
       {
         test: /\.scss$/,
-        //use: ExtractTextPlugin.extract('css-loader!resolve-url-loader!sass-loader'),
         use: ExtractTextPlugin.extract({
           fallback: "style-loader",
           use: [
