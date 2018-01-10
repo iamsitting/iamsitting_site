@@ -50,6 +50,12 @@ let plugin_str = "advlist autolink autosave link image lists charmap print previ
 let plugin_list = plugin_str.split(" ")
 
 
+require.context(
+  'file-loader?name=[path][name].[ext]&context=node_modules/tinymce!tinymce/skins',
+  true,
+  /.*/
+)
+
 tinymce.init({
   mode: "textareas",
   editor_selector: "mceEditor",
