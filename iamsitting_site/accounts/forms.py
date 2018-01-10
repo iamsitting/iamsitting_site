@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
 from django.utils.translation import ugettext_lazy as _
 
-from accounts.approved_secrets import APPROVED_USERNAMES as unames
+from utils.approved_secrets import APPROVED_USERNAMES as unames
 
 
 class SignUpForm(UserCreationForm):

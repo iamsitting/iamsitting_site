@@ -2,30 +2,30 @@
 {% load staticfiles %}
 {% block title %}Post Requests{% endblock %}
 {% block content %}
-                <h2>Post Requests</h2>
-                  <div class="table-wrapper">
-                    <table>
-                      <thead>
-                        <tr>
-                          <th>Title</th>
-                          <th>Category</th>
-                          <th>Respond</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        {% if user.is_superuser %}
-                        {% for post in pending_posts %}
-                        <tr>
-                          <td><a href="{{post.get_update_url}}">{{post.title|safe}}</a></td>
-                          <td>{{post.category|safe}}</td>
-                          <td>
-                            <a href="{% url 'blog:modify-post-status' 'A' post.id %}" class="button special small icon fa-check">Approve</a>
-                            <a href="{% url 'blog:modify-post-status' 'D' post.id %}" class="button special small icon fa-ban">Deny</a>
-                          </td>
-                        </tr>
-                        {% endfor %}
-                        {% endif %}
-                      </tbody>
-                    </table>
-                  </div>
+  <h2>Post Requests</h2>
+    <div class="table-wrapper">
+      <table>
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>Category</th>
+            <th>Respond</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% if user.is_superuser %}
+            {% for post in pending_posts %}
+            <tr>
+              <td><a href="{{post.get_update_url}}">{{post.title|safe}}</a></td>
+              <td>{{post.category|safe}}</td>
+              <td>
+                <a href="{% url 'blog:modify-post-status' 'A' post.id %}" class="button special small icon fa-check">Approve</a>
+                <a href="{% url 'blog:modify-post-status' 'D' post.id %}" class="button special small icon fa-ban">Deny</a>
+              </td>
+            </tr>
+            {% endfor %}
+          {% endif %}
+        </tbody>
+      </table>
+    </div>
 {% endblock %}

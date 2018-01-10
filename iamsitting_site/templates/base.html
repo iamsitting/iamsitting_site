@@ -1,7 +1,8 @@
+{% load render_bundle from webpack_loader %}
 <!DOCTYPE HTML>
 <!-- Massively by HTML5 UP html5up.net | @ajlkn Free for personal and commercial
 use under the CCA 3.0 license (html5up.net/license) -->
-{% load staticfiles %}
+{% load static %}
 {% load widget_tweaks %}
 {% url 'home:home' as home_url %}
 {% url 'home:about_me' as about_me_url %}
@@ -18,14 +19,8 @@ use under the CCA 3.0 license (html5up.net/license) -->
         <meta
             name="viewport"
             content="width=device-width, initial-scale=1, user-scalable=no"/>
-        <link rel="stylesheet" href="{% static 'home_app/css/main.css' %}"/>
-        <noscript><link rel="stylesheet" href="{% static 'home_app/css/noscript.css' %}"/></noscript>
-        <script src="{% static 'home_app/js/jquery.min.js' %}"></script>
-        <script src="{% static 'home_app/js/jquery.scrollex.min.js' %}"></script>
-        <script src="{% static 'home_app/js/jquery.scrolly.min.js' %}"></script>
-        <script src="{% static 'home_app/js/skel.min.js' %}"></script>
-        <script src="{% static 'home_app/js/util.js' %}"></script>
-        <script src="{% static 'home_app/js/main.js' %}"></script>
+        {% render_bundle 'main' 'css' %}
+        {% render_bundle 'main' 'js' %}
         {% block extra_head %}{% endblock %}
     </head>
     <body class="is-loading">
@@ -105,6 +100,7 @@ use under the CCA 3.0 license (html5up.net/license) -->
 
             <!-- Main -->
             <div id="main">
+                <div id="react-app"></div>
                 {% block content %}{% endblock %}
             </div>
 
@@ -182,7 +178,6 @@ use under the CCA 3.0 license (html5up.net/license) -->
             </div>
 
         </div>
-
         {% block scripts %}
         {% endblock %}
     </body>
