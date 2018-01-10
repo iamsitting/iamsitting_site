@@ -8,6 +8,9 @@ module.exports = {
   entry: {
     main: [
       '../iamsitting_site/home_app/static/home_app/js/index', // entry point of our app. assets/js/index.js should require other js modules and dependencies it needs
+    ],
+    blog_post: [
+      '../iamsitting_site/blog/static/blog/js/index'
     ]
   },
 

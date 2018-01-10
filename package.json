@@ -43,6 +43,7 @@
     "sass-loader": "^6.0.6",
     "skel-framework-npm": "^1.0.1",
     "style-loader": "^0.19.1",
+    "tinymce": "^4.7.4",
     "ts-loader": "^3.2.0",
     "webpack": "^3.10.0",
     "webpack-bundle-tracker": "^0.2.1",

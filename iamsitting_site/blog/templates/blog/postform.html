@@ -1,10 +1,9 @@
 {% extends 'base.html' %}
+{% load render_bundle from webpack_loader %}
 {% load staticfiles %}
 {% load widget_tweaks %}
 {% block extra_head %}
-<!--Tinymce Text-Editor (Must be in Head Tag) -->
-  <script src="{% static 'blog/js/tinymce/tinymce.min.js' %}"></script>
-  <script type="text/javascript" src="{% static 'blog/js/tinymce/custom.js' %}" ></script>
+{% render_bundle 'blog_post' 'js' %}
 {% endblock %}
 {% block title %}{{page_title}}{% endblock %}
 {% block content %}

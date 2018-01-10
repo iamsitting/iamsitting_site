@@ -44,6 +44,9 @@ var prodConfig = {
       compress: {
         screw_ie8: true
       },
+      output: {
+        "ascii_only": true
+      },
       comments: false
     }),
     new ExtractTextPlugin({
