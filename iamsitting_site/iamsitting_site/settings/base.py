@@ -11,23 +11,11 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 """
 
 import os
-from utils import secrets
+
+SECRET_KEY = '97(^Y(#H($#HJSsd*D)J&*#n8493t(sdj874y73'
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
-
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
-
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = secrets.prod_secret
-
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
-
-ALLOWED_HOSTS = [secrets.ec2_public_ip, 'iamsitting.com']
-
 
 # Application definition
 
@@ -84,25 +72,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'iamsitting_site.wsgi.application'
 
-
-# Database
-# https://docs.djangoproject.com/en/1.11/ref/settings/#databases
-
-DATABASES = {
-    # 'default': {
-    #    'ENGINE': 'django.db.backends.sqlite3',
-    #    'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    # }
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'iamsitting_site',
-        'USER': secrets.db_username,
-        'PASSWORD': secrets.db_password,
-        'HOST': 'localhost',
-        'PORT': '',
-      }
-}
-
+ALLOWED_HOSTS = []
 
 # Password validation
 # https://docs.djangoproject.com/en/1.11/ref/settings/#auth-password-validators
@@ -142,20 +112,17 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-STATIC_ROOT = os.path.join(BASE_DIR, "static")  #prod
-#STATIC_ROOT = ''  #dev
-
 # Redirect to home URL after login (Default redirects to /accounts/profile/)
 LOGIN_REDIRECT_URL = '/'
 
 STATICFILES_DIRS = (
-    #os.path.join(BASE_DIR, 'static'),  # dev
+
 )
 
 WEBPACK_LOADER = {
     'DEFAULT': {
         'BUNDLE_DIR_NAME': 'bundles/',
-        'STATS_FILE': os.path.join(BASE_DIR, '../webpack/webpack-stats.json'),
+        'STATS_FILE': os.path.join(BASE_DIR, '../../webpack/webpack-stats.json'),
     }
 }
 
@@ -167,12 +134,12 @@ LOGGING = {
         'feedback': {
             'level': 'DEBUG',
             'class': 'logging.FileHandler',
-            'filename': os.path.join(BASE_DIR, "logs/feedback.log"),
+            'filename': os.path.join(BASE_DIR, "../logs/feedback.log"),
         },
         'user_debug': {
             'level': 'DEBUG',
             'class': 'logging.FileHandler',
-            'filename': os.path.join(BASE_DIR, "logs/debug.log"),
+            'filename': os.path.join(BASE_DIR, "../logs/debug.log"),
         },
     },
     'loggers': {
