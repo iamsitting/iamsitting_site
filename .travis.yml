@@ -1,0 +1,19 @@
+language: python
+python:
+  - "3.6"
+  - "pypy3"
+addons:
+  - postgresql: '9.6.3'
+env:
+  - DJANGO_VERSION=1.11.3
+  - DJANGO_SETTINGS_MODULE=iamsitting.settings.production
+install:
+  - pip install -r requirements.txt
+before_script:
+  - psql -c 'create database iamsitting;' -U postgres
+  - psql -d iamsitting -c "CREATE EXTENSION IF NOT EXISTS hstore;"
+  - python iamsitting/manage.py makemigrations
+script:
+  - python iamsitting/mangae.py migrate --noinput
+
+
