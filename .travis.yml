@@ -12,6 +12,6 @@ before_script:
   - psql -c 'create database iamsitting_site;' -U postgres
   - python iamsitting_site/manage.py makemigrations
 script:
-  - python iamsitting_site/mangae.py migrate --noinput
+  - python iamsitting_site/manage.py migrate --noinput
 
 
