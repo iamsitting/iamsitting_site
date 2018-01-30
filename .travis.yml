@@ -6,7 +6,7 @@ addons:
   - postgresql: '9.6.3'
 env:
   - DJANGO_VERSION=1.11.3
-  - DJANGO_SETTINGS_MODULE=iamsitting.settings.production
+  - DJANGO_SETTINGS_MODULE=iamsitting.settings.travis
 install:
   - pip install -r requirements.txt
 before_script:
