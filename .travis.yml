@@ -10,7 +10,6 @@ install:
   - pip install -r requirements.txt
 before_script:
   - psql -c 'create database iamsitting_site;' -U postgres
-  - psql -d iamsitting -c "CREATE EXTENSION IF NOT EXISTS hstore;"
   - python iamsitting_site/manage.py makemigrations
 script:
   - python iamsitting_site/mangae.py migrate --noinput
