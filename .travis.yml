@@ -3,7 +3,7 @@ dist: trusty
 language: python
 cache: pip
 python:
-  - 3.6 pypy3
+  - "3.6"
 addons:
   - postgresql: '9.6.3'
 env:
