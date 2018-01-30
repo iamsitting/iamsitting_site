@@ -1,17 +1,20 @@
+sudo: required
+dist: trusty
 language: python
+cache: pip
 python:
-  - "3.6"
-  - "pypy3"
+  - 3.6 pypy3
 addons:
   - postgresql: '9.6.3'
 env:
   - DJANGO_SETTINGS_MODULE=iamsitting_site.settings.travis DJANGO_VERSION=1.11.3
 install:
   - pip install -r requirements.txt
+  - npm install
 before_script:
   - psql -c 'create database iamsitting_site;' -U postgres
   - python iamsitting_site/manage.py makemigrations
 script:
   - python iamsitting_site/manage.py migrate --noinput
-
+  - npm run build
 
