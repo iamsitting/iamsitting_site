@@ -309,4 +309,10 @@ sudo systemctl restart nginx
 sudo systemctl status nginx
 ```
 
-In you broweser type your public_ip. Now you have a django website running with gunicorn and nginx. The hardest part is over!
+In you browser type your public_ip. Now you have a django website running with gunicorn and nginx. The hardest part is over!
+
+### Frontend
+
+
+The frontend is a hodgepodge of Django-templates, JS, SCSS, etc. However, it's all beautifully managed by webpack and the project static directory.
+See [FRONTEND.md](FRONTEND.md).
