@@ -19,6 +19,7 @@ from django.conf.urls import include, url
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+from django.views.generic import TemplateView
 
 urlpatterns = [
     url(r'^', include('home_app.urls', namespace="home")),
@@ -26,6 +27,7 @@ urlpatterns = [
     url(r'^blog/', include('blog.urls', namespace="blog")),
     url(r'^tinymce/', include('tinymce.urls')),
     url(r'^api/', include('rest_api.urls', namespace='api')),
+    url(r'^robots\.txt$', TemplateView.as_view(template_name='robots.txt', content_type='text/plain')),
     # admin urls
     url(r'^admin/', admin.site.urls),
     url(r'^static/(?P<path>.*)$', django.views.static.serve, {'document_root': settings.STATIC_ROOT}),

@@ -311,8 +311,14 @@ sudo systemctl status nginx
 
 In you browser type your public_ip. Now you have a django website running with gunicorn and nginx. The hardest part is over!
 
-### Frontend
+## Frontend
 
 
 The frontend is a hodgepodge of Django-templates, JS, SCSS, etc. However, it's all beautifully managed by webpack and the project static directory.
 See [FRONTEND.md](FRONTEND.md).
+
+
+## Security
+
+This project also implements SSL for security. See [SECURE.md](Secure.md).
+
