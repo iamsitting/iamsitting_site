@@ -268,4 +268,10 @@ import skel from 'skel-framework-npm/src/skel'
 
   });
 
+  $(function() {
+    $('.close').click(function(){
+      $('.alert-dismissible').hide()
+    });
+  });
+
 })(jQuery);
