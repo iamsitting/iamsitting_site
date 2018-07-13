@@ -3,6 +3,7 @@ var webpack = require("webpack")
 var BundleTracker = require("webpack-bundle-tracker")
 var ExtractTextPlugin = require("extract-text-webpack-plugin")
 var merge = require("webpack-merge")
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
 var baseConfig = require("./webpack.base.config")
 
@@ -27,6 +28,27 @@ var prodConfig = {
     ]  // -rules
   },  // -module
 
+  optimization: {
+    minimizer: [
+      new UglifyJsPlugin({
+        uglifyOptions: {
+          beautify: false,
+          mangle: {
+            screw_ie8: true,
+            keep_fnames: true
+          },
+          compress: {
+            screw_ie8: true
+          },
+          output: {
+            "ascii_only": true
+          },
+          comments: false
+        }
+      })
+    ]
+  },
+
   plugins: [
     new webpack.LoaderOptionsPlugin({
       minimize: true,
@@ -34,20 +56,6 @@ var prodConfig = {
     }),
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify('production')
-    }),
-    new webpack.optimize.UglifyJsPlugin({
-      beautify: false,
-      mangle: {
-        screw_ie8: true,
-        keep_fnames: true
-      },
-      compress: {
-        screw_ie8: true
-      },
-      output: {
-        "ascii_only": true
-      },
-      comments: false
     }),
     new ExtractTextPlugin({
       filename: '[name].css'
