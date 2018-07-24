@@ -2,6 +2,8 @@ from django.conf.urls import url
 
 from home_app import views
 
+app_name = "home_app"
+
 urlpatterns = [
     url(r'^$', views.home, name='home'),
     url(r'^about-me/$', views.about_me, name='about_me'),

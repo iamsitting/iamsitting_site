@@ -4,6 +4,8 @@ from rest_framework import routers
 from rest_api import views
 from rest_api.viewsets import LocalImageViewSet
 
+app_name = "rest_api"
+
 router = routers.DefaultRouter()
 router.register('images', LocalImageViewSet, 'images')
 
