@@ -2,6 +2,8 @@ from django.conf.urls import url
 
 from blog import views
 
+app_name = "blog"
+
 urlpatterns = [
     url(r'^new-post/$', views.NewPost.as_view(), name='new-post'),
     url(r'^edit-post/(?P<slug>[-\w]+)$', views.EditPost.as_view(), name='edit-post'),
