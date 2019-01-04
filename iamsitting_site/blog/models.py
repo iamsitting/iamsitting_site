@@ -1,8 +1,9 @@
 import logging
 import re
+from datetime import datetime
 
 from django.contrib.auth.models import User
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 from django.db import models
 from django.template.defaultfilters import slugify
 from tinymce.models import HTMLField
@@ -25,16 +26,16 @@ class Post(models.Model):
     ('D', 'Denied'),
   )
 
-  author = models.ForeignKey(User)
+  author = models.ForeignKey(User, null=True, on_delete=models.SET_NULL)
   title = models.CharField(max_length=100, unique=True, blank=True, null=True)
   slug = models.SlugField(unique=True, blank=True, null=True)
   body = HTMLField(blank=True)
   status = models.CharField(max_length=1, choices=POST_STATUS, default='P')
   posted_on = models.DateField(db_index=True, auto_now_add=True)
-  post_date = models.DateField(auto_now_add=True)
+  post_date = models.DateField(blank=True)
   subtitle = models.CharField(max_length=140, blank=True)
   preview = models.CharField(max_length=500, null=True)
-  category = models.ForeignKey('blog.Category')
+  category = models.ForeignKey('blog.Category', null=True, on_delete=models.SET_NULL)
 
   def __str__(self):
     return '%s' % self.title
@@ -53,6 +54,8 @@ class Post(models.Model):
     return preview
 
   def save(self, *args, **kwargs):
+    if not self.id:
+      self.post_date = datetime.now().date()
     if not self.slug:
       self.slug = slugify(self.title)
     self.preview = self.get_preview()
@@ -70,7 +73,7 @@ class Comment(models.Model):
   email = models.EmailField(max_length=75)
   text = models.TextField(blank=True, null=True)
   status = models.CharField(max_length=1, choices=COMM_STATUS, default='P')
-  post = models.ForeignKey(Post, blank=True, null=True)
+  post = models.ForeignKey(Post, blank=True, null=True, on_delete=models.CASCADE)
   created_on = models.DateTimeField(auto_now_add=True)
 
   def __unicode__(self):
