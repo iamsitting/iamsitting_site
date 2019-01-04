@@ -3,7 +3,6 @@ var webpack = require("webpack")
 var BundleTracker = require("webpack-bundle-tracker")
 var MiniCssExtractPlugin = require("mini-css-extract-plugin")
 var merge = require("webpack-merge")
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 
 var baseConfig = require("./webpack.base.config")
 
