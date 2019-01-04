@@ -23,9 +23,9 @@ module.exports = {
     new BundleTracker({filename: './webpack/webpack-stats.json'}),
     new webpack.IgnorePlugin(/^\.\/locale$/, /moment\/js$/), // to not to load all locales
     new webpack.ProvidePlugin({
-            $: "jquery",
-            jQuery: "jquery"
-        }),
+      $: "jquery",
+      jQuery: "jquery"
+    }),
   ],
 
   module: {
@@ -42,11 +42,18 @@ module.exports = {
       }, //js, jsx
       {
         test: /\.woff2?$|\.ttf$|\.eot$|\.svg$|\.png$|\.jpg$|\.gif$/,
-        loader: "file-loader"
+        loader: [
+        {
+          loader: 'file-loader',
+          options: {
+            name: '[name]-[hash].[ext]'
+          }
+        }
+        ]
       }
     ],
   },
-  
+
   resolve: {
     modules: [
       'node_modules',
