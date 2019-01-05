@@ -2,59 +2,37 @@ var path = require("path")
 var webpack = require('webpack')
 var BundleTracker  = require('webpack-bundle-tracker')
 var merge = require('webpack-merge')
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 var baseConfig = require('./webpack.base.config')
 
 var devConfig = {
+  mode: 'development',
   entry: {
     main: [
       'webpack-dev-server/client?http://localhost:3000',
       'webpack/hot/only-dev-server',
+    ],
+    blog_post: [
+      'webpack-dev-server/client?http://localhost:3000',
+      'webpack/hot/only-dev-server',
     ]
   },  //-entry
-  
-  output: {
-    publicPath: 'http://localhost:3000/static/bundles/',
-  },  //-output
 
-  devtool: 'cheap-module-eval-source-map',
+  output: {
+    publicPath: 'http://localhost:3000/iamsitting_site/static/bundles/',
+  },  //-output
 
   module: {
     rules: [
       {
-        test: /\.css$/,
-        loader: 'style-loader!css-loader?sourceMap'
-      },
-      {
-        test: /\.scss$/,
+        test:  /\.(sa|sc|c)ss$/,
         use: [
-          {
-            loader: 'style-loader',
-          },
-          {
-            loader: 'css-loader',
-            options: {
-              sourceMap: true
-            }
-          },
-          {
-            loader: 'resolve-url-loader',
-            options: {
-              sourceMap: true
-            }
-          },
-          {
-            loader: 'sass-loader',
-            options: {
-              sourceMap: true
-            }
-          }
-        ]  //-use
+          MiniCssExtractPlugin.loader,
+          'css-loader',
+          'sass-loader'
+        ]
       },
-      {
-        test: /\.tsx?$/,
-        loader: 'ts-loader'
-      }
     ]  //-rules
   },  //-module
 
@@ -62,7 +40,9 @@ var devConfig = {
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoEmitOnErrorsPlugin(), // don't reload if there is an error
     new webpack.NamedModulesPlugin(),
+    new MiniCssExtractPlugin({
+      filename: '[name].css'
+    })
   ],
 }
-
 module.exports = merge.smart(devConfig, baseConfig)
