@@ -5,11 +5,11 @@ notifications:
 language: python
 cache: pip
 python:
-  - "3.6"
+  - "3.5.2"
 addons:
-  - postgresql: '9.6.3'
+  - postgresql: '9.5.14'
 env:
-  - DJANGO_SETTINGS_MODULE=iamsitting_site.settings.travis DJANGO_VERSION=1.11.3
+  - DJANGO_SETTINGS_MODULE=iamsitting_site.settings.travis DJANGO_VERSION=2.1.5
 install:
   - pip install -r requirements.txt
   - npm install
