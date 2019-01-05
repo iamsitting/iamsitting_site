@@ -20,7 +20,7 @@ module.exports = {
   },
 
   plugins: [
-    new BundleTracker({filename: './webpack/webpack-stats.json'}),
+    new BundleTracker({path: __dirname, filename: './webpack-stats.json'}),
     new webpack.IgnorePlugin(/^\.\/locale$/, /moment\/js$/), // to not to load all locales
     new webpack.ProvidePlugin({
       $: "jquery",
@@ -31,7 +31,7 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.(js|jsx)$/,
+        test: /\.js$/,
         exclude: [/node_modules/],
         use: [
           {
@@ -56,7 +56,7 @@ module.exports = {
 
   resolve: {
     modules: [
-      'node_modules',
+      './node_modules',
       path.resolve(__dirname, '../frontend'),
     ],
     alias: {

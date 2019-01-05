@@ -6,15 +6,20 @@ var merge = require('webpack-merge')
 var baseConfig = require('./webpack.base.config')
 
 var devConfig = {
+  mode: 'development',
   entry: {
     main: [
       'webpack-dev-server/client?http://localhost:3000',
       'webpack/hot/only-dev-server',
+    ],
+    blog_post: [
+      'webpack-dev-server/client?http://localhost:3000',
+      'webpack/hot/only-dev-server',
     ]
   },  //-entry
-  
+
   output: {
-    publicPath: 'http://localhost:3000/static/bundles/',
+    publicPath: 'http://localhost:3000/iamsitting_site/static/bundles/',
   },  //-output
 
   devtool: 'cheap-module-eval-source-map',
@@ -30,20 +35,12 @@ var devConfig = {
         use: [
           {
             loader: 'style-loader',
-          },
-          {
+          }, {
             loader: 'css-loader',
             options: {
               sourceMap: true
             }
-          },
-          {
-            loader: 'resolve-url-loader',
-            options: {
-              sourceMap: true
-            }
-          },
-          {
+          }, {
             loader: 'sass-loader',
             options: {
               sourceMap: true
