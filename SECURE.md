@@ -57,10 +57,12 @@ Go to AWS Console > Instance > Security group > Add Rule > HTTPS
 
 Now let's add a few lines to the Django settings file.
 ```
-SESSION_COOKIE_SECURE = True
-SESSION_COOKIE_HTTPONLY = True
-SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTOCOL', 'https')
-SECURE_SSL_REDIRECT = True
+SSL_ON = True # this allows you test production locally without SSL connection.
+if SSL_ON:
+  SESSION_COOKIE_SECURE = True
+  SESSION_COOKIE_HTTPONLY = True
+  SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTOCOL', 'https')
+  SECURE_SSL_REDIRECT = True
 ```
 
 Lastly, run the certbot dry-run renewal code:
