@@ -4,7 +4,7 @@ These are instructions for setting up webpack on django on production mode. Ther
 
 ## NPM Setup
 
-Install NPM and Node dependencies. NPM is super usefule to manage js and css libraries.
+Install NPM, Node dependencies. NPM is super usefule to manage js and css libraries.
 ``` 
 sudo apt-get install build-essential curl git m4 ruby texinfo libbz2-dev libcurl4-openssl-dev libexpat-dev libncurses-dev zlib1g-dev
 ```
@@ -13,11 +13,11 @@ Intialize NPM and install Webpack
 ```
 cd ~/path/to/workspace #this is one level above project root
 npm init #this creates the node_modules dir and the package.json file
-npm install webpack webpack-bundle-tracker css-loader extract-text-webpack-plugin file-loader node-sass resolve-url-loader sass-loader style-loader webpack-merge jquery #install modules
+npm install webpack webpack-bundle-tracker css-loader mini-css-extract-plugin file-loader node-sass sass-loader style-loader webpack-merge jquery # install modules
 ```
-Use npm install [package] to install other tempalate dependencies, font-awesome, bootstrap, etc.
+Use npm install [package] to install other tempalate dependencies, font-awesome, bootstrap, etc. (see package.json)
 
-## Webpack Setup
+## Webpack 4 Setup
 
 Create webpack config files and index.js
 ```
@@ -39,25 +39,28 @@ module.exports = {
 
   entry: {
     main: [ //name of bundled js file
-      'path/to/index', // entry point of our app. 
+      'path/to/index', // entry point of our app.
     ], //you can add multiple entries
   },
 
   output: {
     path: path.resolve('path/to/static/bundles/'),
-    filename: "[name].js", //will take the name of entry if left as [name]
+    filename: "[name].js", // will take the name of entry if left as [name]
   },
+
+  module: {
+    rules: [...]  // setup rules for transpiling differnt file types.
+  }
 
   plugins: [
     new BundleTracker({filename: './webpack/webpack-stats.json'}), //output of blude tracker
   ],
-  
+
   resolve: {
     modules: [ //import statements will look at these two directories
       'node_modules',
       path.resolve(__dirname, '../frontend'),
     ],
-    
   }
 }
 ```
@@ -67,29 +70,23 @@ Setup production webpack config files (this is only an overivew). This basically
 
 ```
 //webpack.production.config.js
-var ExtractTextPlugin = require("extract-text-webpack-plugin") // generates css files
+var MiniCssExtractPlugin = require("mini-css-extract-plugin") // generates css files
 var merge = require("webpack-merge") //merges config files
 
 var baseConfig = require("./webpack.base.config")
 
 var prodConfig = {
+  mode: 'production',
   module: {
     rules: [ //use these rules to process scss files
       {
-        test: /\.css$/,
-        use: ExtractTextPlugin.extract('css-loader'),
+        test: /\.(sa|sc|c)ss$/,
+        use: [
+          MiniCssExtractPlugin.loader,
+          "css-loader",
+          "sass-loader"
+        ]
       },
-      {
-        test: /\.scss$/,
-        use: ExtractTextPlugin.extract({
-          fallback: "style-loader",
-          use: [
-            { loader: 'css-loader', options: { sourceMap: true } },
-            { loader: 'resolve-url-loader', options: { sourceMap: true } },
-            { loader: 'sass-loader', options: { sourceMap: true } }
-          ] // -use
-        })  // -use
-      }
     ]  // -rules
   },  // -module
 
@@ -98,24 +95,7 @@ var prodConfig = {
       minimize: true,
       debug: false
     }),
-    new webpack.DefinePlugin({
-      'process.env.NODE_ENV': JSON.stringify('production')
-    }),
-    new webpack.optimize.UglifyJsPlugin({ //compresses bundled files
-      beautify: false,
-      mangle: {
-        screw_ie8: true,
-        keep_fnames: true
-      },
-      compress: {
-        screw_ie8: true
-      },
-      output: {
-        "ascii_only": true
-      },
-      comments: false
-    }),
-    new ExtractTextPlugin({
+    new MiniCssExtractPlugin({
       filename: '[name].css'
     })
   ]  // -plugins
@@ -142,7 +122,7 @@ APPS = [
 WEBPACK_LOADER = {
     "DEFAULT": {
         "BUNDLE_DIR_NAME": 'bundles/',
-        "STATS_FILE": os.path.join(BASE_DIR, '../../webpack/webpack-stats.json'), # tied to BundleTracker in webpack config file 
+        "STATS_FILE": os.path.join(BASE_DIR, '../webpack/webpack-stats.json'), # tied to BundleTracker in webpack config file
     }
 }
 
