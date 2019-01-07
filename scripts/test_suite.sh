@@ -2,7 +2,7 @@
 
 cd iamsitting_site
 
-export DJANGO_SETTING_MODULE=ap.settings.development
+export DJANGO_SETTING_MODULE=iamsitting_site.settings.development
 
 echo "Loading webpack ... ..."
 npm run dev > run_webpack.log 2>&1 &
@@ -11,6 +11,7 @@ sleep 2
 while ! grep -qw "Compiled successfully." run_webpack.log; do sleep 5; done
 
 echo "Loading Django ... ..."
+python manage.py migrate auth
 python manage.py runserver &
 DJANGO_PID=$!
 sleep 2
