@@ -19,4 +19,6 @@ before_script:
 script:
   - python iamsitting_site/manage.py migrate --noinput
   - npm run build
+after_success:
+  - sh scripts/test_suite.sh
 

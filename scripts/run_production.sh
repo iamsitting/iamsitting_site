@@ -1,13 +1,11 @@
 #!/bin/bash 
 
 cd ..
-ls
-
 source ~/Envs/djenv/bin/activate
 sudo service gunicorn stop
 git stash
 git pull
-pip install -r requirements.txt
+pip install -r requirements/production.txt
 iamsitting_site/manage.py makemigrations
 iamsitting_site/manage.py migrate
 npm install
