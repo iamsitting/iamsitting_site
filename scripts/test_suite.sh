@@ -11,7 +11,6 @@ sleep 2
 while ! grep -qw "Compiled successfully." run_webpack.log; do sleep 5; done
 
 echo "Loading Django ... ..."
-python manage.py migrate auth
 python manage.py runserver &
 DJANGO_PID=$!
 sleep 2

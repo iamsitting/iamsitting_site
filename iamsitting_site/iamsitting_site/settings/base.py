@@ -20,14 +20,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__fil
 # Application definition
 
 INSTALLED_APPS = [
-    'webpack_loader',
 
-    # modules
-    'accounts',
-    'blog',
-    'home_app',
-    'rest_api',
-    'utils',
     # django
     'django.contrib.admin',
     'django.contrib.auth',
@@ -40,6 +33,15 @@ INSTALLED_APPS = [
     'tinymce',
     'widget_tweaks',
     'rest_framework',
+    'webpack_loader',
+
+    # modules
+    'accounts',
+    'blog',
+    'home_app',
+    'rest_api',
+    'utils',
+
 ]
 
 MIDDLEWARE = [
