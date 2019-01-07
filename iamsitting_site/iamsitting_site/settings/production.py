@@ -10,6 +10,7 @@ SECRET_KEY = secrets.prod_secret
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
+SSL_ON = True
 
 # ALLOWED_HOSTS = [secrets.ec2_public_ip, 'iamsitting.com']
 ALLOWED_HOSTS = ['*']
@@ -18,23 +19,26 @@ ALLOWED_HOSTS = ['*']
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
 
 DATABASES = {
-    # 'default': {
-    #    'ENGINE': 'django.db.backends.sqlite3',
-    #    'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    # }
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'iamsitting_site',
-        'USER': secrets.db_username,
-        'PASSWORD': secrets.db_password,
-        'HOST': 'localhost',
-        'PORT': '',
-      }
+  'default': {
+    'ENGINE': 'django.db.backends.postgresql_psycopg2',
+    'NAME': 'iamsitting_site',
+    'USER': secrets.db_username,
+    'PASSWORD': secrets.db_password,
+    'HOST': 'localhost',
+    'PORT': '',
+  }
 }
+
+STATIC_URL = '/static/'
 
 STATIC_ROOT = os.path.join(BASE_DIR, "static")
 
-SESSION_COOKIE_SECURE = True
-SESSION_COOKIE_HTTPONLY = True
-SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
-SECURE_SSL_REDIRECT = True
+STATICFILES_DIRS = (
+
+)
+
+if SSL_ON:
+  SESSION_COOKIE_SECURE = True
+  SESSION_COOKIE_HTTPONLY = True
+  SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+  SECURE_SSL_REDIRECT = True
