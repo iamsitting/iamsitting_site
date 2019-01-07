@@ -4,6 +4,7 @@
 {% url 'home:home' as home_url %}
 {% url 'home:about_me' as about_me_url %}
 {% url 'home:my_cv' as cv_url %}
+{% url 'home:contact-me' as contact_me %}
 {% url 'accounts:login' as login_url %}
 {% url 'accounts:logout' as logout_url %}
 {% url 'blog:new-post' as newpost_url %}
@@ -114,7 +115,8 @@ use under the CCA 3.0 license (html5up.net/license) -->
       <!-- Footer -->
       <footer id="footer">
         <section>
-          <form method="post" action="#">
+          <form method="post" action="{{contact_me}}">
+            {% csrf_token %}
             <div class="field">
               <label for="name">Name</label>
               <input type="text" name="name" id="name"/>
@@ -128,7 +130,7 @@ use under the CCA 3.0 license (html5up.net/license) -->
               <textarea name="message" id="message" rows="3"></textarea>
             </div>
             <ul class="actions">
-              <li><input type="submit" value="Send Message"/ disabled></li>
+              <li><input type="submit" value="Send Message" onclick="return confirm('Are you sure?');"/></li>
             </ul>
           </form>
         </section>
