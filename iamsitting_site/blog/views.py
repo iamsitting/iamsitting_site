@@ -1,17 +1,16 @@
 import logging
 
+from blog.forms import LocalImageForm, PostForm
+from blog.models import Post
 from django.contrib.auth.decorators import user_passes_test
 from django.contrib.auth.models import User
-from django.urls import reverse
 from django.db.models import Q
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import get_object_or_404, redirect, render
+from django.urls import reverse
 from django.views.decorators.csrf import csrf_exempt
 from django.views.generic import TemplateView
 from django.views.generic.edit import CreateView, UpdateView
-
-from blog.forms import LocalImageForm, PostForm
-from blog.models import Post
 
 debug = logging.getLogger('debugger')
 
@@ -91,6 +90,7 @@ def upload_image(request):
 
 
 def view_post(request, slug):
+  print(slug)
   post = Post.objects.get(slug=slug)
   ctx = {'post': post}
   return render(request, 'blog/view_post.html', context=ctx)
