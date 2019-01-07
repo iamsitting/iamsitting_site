@@ -1,12 +1,15 @@
 import unittest
 
 from selenium import webdriver
+from selenium.webdriver.firefox.options import Options
 
 
 class NewVisitorTest(unittest.TestCase):
 
   def setUp(self):
-    self.browser = webdriver.Firefox()
+    options = Options()
+    options.headless = True
+    self.browser = webdriver.Firefox(options=options)
 
   def tearDown(self):
     self.browser.quit()

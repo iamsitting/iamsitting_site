@@ -90,7 +90,6 @@ def upload_image(request):
 
 
 def view_post(request, slug):
-  print(slug)
   post = Post.objects.get(slug=slug)
   ctx = {'post': post}
   return render(request, 'blog/view_post.html', context=ctx)
