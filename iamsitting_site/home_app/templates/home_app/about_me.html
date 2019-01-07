@@ -63,25 +63,22 @@
             <h2>Now</h2>
             <p>What am I doing, now?</p>
         </header>
-        <p>Well... I decided to take a break from engineering. Currently, I'm in a
-            2-year Christian Bible and service program in California. It's been the best
-            decision of my life. No, I won't become a theologian, or a professional pastor.
-            Nor will I start my own church. I just want to spend some time (before adult
-            life gets hectic) being trained in the truths of my faith and to serve others
-            these wonderful truths.</p>
+        <p>Well... I decided to take an indefinite break from engineering. I am serving the
+            Lord Jesus with my full-time in College Station, TX. Occassionally, I do some freelance web development. </p>
         <hr/>
         <!-- Before -->
         <header>
             <h2>Before</h2>
             <p>What was I doing? <a href="{% url 'home:my_cv'%}" target="_blank">(see my cv)</a></p>
         </header>
-        <p>Graduating college! My last year or so in college I was basically doing two
-            things: senior design and working.
+        <p>Recently, I finished a 2-year Christian Bible and service program in California.
+            It was the best decision of my life. No, I didn't want to become a theologian, neither a professional pastor, nor start my own church. I just wanted to spend some time (before adult life gets hectic) being trained in the truths of my faith and to serve others these wonderful truths.
+            Before then, I was doing some engineering stuff....
         </p>
         <h3>Senior Design</h3>
         <div class="box">
             <p>My project was called
-                <a href="http://cyclexpro.com">Cycle-X Pro</a>. In a nutshell, it is a Fitbit +
+                <a href="{% url 'home_app:cycle_x_pro' %}">Cycle-X Pro</a>. In a nutshell, it is a Fitbit +
                 LifeAlert for your bicycle. Visit the embedded site to find out more; there is a
                 good video about it as well. I worked on pretty much all the software including
                 the C code for the Arduino, the Django website, and the Android app. Check out
