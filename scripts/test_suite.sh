@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+cd iamsitting_site
+
 export DJANGO_SETTING_MODULE=ap.settings.development
 
 echo "Loading webpack ... ..."
