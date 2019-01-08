@@ -56,7 +56,7 @@ def contact_me(request):
   if request.method == 'POST':
     name = request.POST.get('name')
     email = request.POST.get('email')
-    message = request.POST.get('message')
+    message = 'This is message from iamsitting.com.\n ----\n' + request.POST.get('message')
     subject = 'From: ' + name + ' at ' + str(datetime.now())
     send_mail(subject, message, email, ['carlos@iamsitting.com'], fail_silently=False)
     return HttpResponseRedirect("/")
