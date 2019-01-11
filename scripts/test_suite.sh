@@ -16,7 +16,8 @@ sleep 10
 echo 'Hopefully Django server successfully started.'
 
 echo "testing Django ... ..."
-python iamsitting_site/manage.py test --verbosity=2
+cd iamsitting_site
+python manage.py test --verbosity=2
 
 
 echo "killing processes"
