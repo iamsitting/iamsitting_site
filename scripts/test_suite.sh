@@ -2,7 +2,7 @@
 
 cd iamsitting_site
 
-export DJANGO_SETTING_MODULE=iamsitting_site.settings.development
+export DJANGO_SETTINGS_MODULE=iamsitting_site.settings.development
 
 echo "Loading webpack ... ..."
 npm run dev > run_webpack.log 2>&1 &
