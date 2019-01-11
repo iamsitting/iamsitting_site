@@ -20,5 +20,6 @@ script:
   - python iamsitting_site/manage.py migrate --noinput
   - npm run build
 after_success:
+  - psql -c "create user iamsitting with createrole superuser password 'iamsitting94'" -U postgres
   - sh scripts/test_suite.sh
 
