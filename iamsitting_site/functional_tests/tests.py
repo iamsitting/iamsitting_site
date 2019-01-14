@@ -1,9 +1,8 @@
-import unittest
-
+from django.test import LiveServerTestCase
 from selenium import webdriver
 
 
-class NewVisitorTest(unittest.TestCase):
+class NewVisitorTest(LiveServerTestCase):
 
   def setUp(self):
     options = webdriver.ChromeOptions()
@@ -17,7 +16,7 @@ class NewVisitorTest(unittest.TestCase):
   def test_open_page(self):
 
     # user visits website
-    self.browser.get('http://localhost:8000')
+    self.browser.get(self.live_server_url)
 
     # user notices iamsitting in the title
     self.assertIn('iamsitting', self.browser.title)
@@ -38,7 +37,3 @@ class NewVisitorTest(unittest.TestCase):
     # user clicks on login
     login_button = self.browser.find_element_by_xpath("/html/body/div[1]/header/a")
     login_button.click()
-
-
-if __name__ == '__main__':
-  unittest.main(warnings='ignore')

@@ -12,13 +12,19 @@ NEW_POST_DATA = {
   'category': CATEGORY_TITLE}
 
 
-def new_user(uname):
+def new_user(uname, su=False):
   first_user = User()
   first_user.username = uname
   first_user.set_password(PW)
-  first_user.is_superuser = True
+  first_user.is_superuser = su
   first_user.save()
   return first_user
+
+
+def new_category(title):
+  cat = Category(title=title)
+  cat.save()
+  return cat
 
 
 class BlogPageTest(TestCase):
@@ -31,8 +37,7 @@ class BlogPageTest(TestCase):
 
   def test_POST_new_post_save_post(self):
     user = new_user('user1')
-    category = Category(title="History")
-    category.save()
+    new_category(CATEGORY_TITLE)
     self.client.login(username=user.username, password=PW)
     self.client.post(
       reverse('blog:new-post'),
@@ -41,14 +46,25 @@ class BlogPageTest(TestCase):
 
   def test_POST_new_post_redirect(self):
     user = new_user('user1')
-    category = Category(title="History")
-    category.save()
+    new_category(CATEGORY_TITLE)
     self.client.login(username=user.username, password=PW)
     response = self.client.post(
       reverse('blog:new-post'),
       data=NEW_POST_DATA)
     self.assertEqual(response.status_code, 302)
     self.assertEqual(response['location'], reverse('blog:new-post'))
+
+  def test_GET_post_requests_list(self):
+    # This is only for superusers
+    suser = new_user('super', su=True)
+    c = new_category(CATEGORY_TITLE)
+    data = NEW_POST_DATA.copy()
+    data['category'] = c
+    p = Post(**data)
+    p.save()
+    self.client.login(username=suser.username, password=PW)
+    response = self.client.get(reverse('blog:post-requests'))
+    self.assertIn('The Big Title', response.content.decode())
 
 
 class UserModelTest(TestCase):
