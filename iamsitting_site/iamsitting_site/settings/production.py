@@ -15,6 +15,13 @@ SSL_ON = True
 # ALLOWED_HOSTS = [secrets.ec2_public_ip, 'iamsitting.com']
 ALLOWED_HOSTS = ['*']
 
+# Email setup
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = '587'
+EMAIL_HOST_USER = secrets.email_user
+EMAIL_HOST_PASSWORD = secrets.email_pass
+
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
 
