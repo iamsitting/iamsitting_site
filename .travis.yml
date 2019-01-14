@@ -19,5 +19,4 @@ before_script:
 script:
   - python iamsitting_site/manage.py migrate
   - npm run build
-  - sh scripts/test_suite.sh
 

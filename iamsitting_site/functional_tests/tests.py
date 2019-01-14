@@ -1,15 +1,15 @@
 import unittest
 
 from selenium import webdriver
-from selenium.webdriver.firefox.options import Options
 
 
 class NewVisitorTest(unittest.TestCase):
 
   def setUp(self):
-    options = Options()
-    options.headless = True
-    self.browser = webdriver.Firefox(options=options)
+    options = webdriver.ChromeOptions()
+    options.add_argument('headless')
+    options.add_argument('window-size=1200x600')
+    self.browser = webdriver.Chrome(chrome_options=options)
 
   def tearDown(self):
     self.browser.quit()
