@@ -1,30 +1,9 @@
+from blog.models import Post
 from django.contrib.auth.models import User
-from blog.models import Category, Post
 from django.test import TestCase
 from django.urls import reverse
-
-PW = "badpassword"
-CATEGORY_TITLE = "History"
-NEW_POST_DATA = {
-  'title': 'The Big Title',
-  'subtitle': 'A subtitle',
-  'body': 'body text',
-  'category': CATEGORY_TITLE}
-
-
-def new_user(uname, su=False):
-  first_user = User()
-  first_user.username = uname
-  first_user.set_password(PW)
-  first_user.is_superuser = su
-  first_user.save()
-  return first_user
-
-
-def new_category(title):
-  cat = Category(title=title)
-  cat.save()
-  return cat
+from test.helpers import (CATEGORY_TITLE, NEW_POST_DATA, PW, new_category,
+                          new_post, new_user)
 
 
 class BlogPageTest(TestCase):
@@ -61,11 +40,7 @@ class BlogPageTest(TestCase):
   def test_GET_post_requests_list(self):
     # This is only for superusers
     suser = new_user('super', su=True)
-    c = new_category(CATEGORY_TITLE)
-    data = NEW_POST_DATA.copy()
-    data['category'] = c
-    p = Post(**data)
-    p.save()
+    new_post()
     self.client.login(username=suser.username, password=PW)
     response = self.client.get(reverse('blog:post-requests'))
     self.assertTemplateUsed(response, 'blog/post_requests.html')
@@ -76,11 +51,7 @@ class BlogPageTest(TestCase):
   def test_GET_modify_post_status(self):
     # This is only for supersusers
     suser = new_user('super', su=True)
-    c = new_category(CATEGORY_TITLE)
-    data = NEW_POST_DATA.copy()
-    data['category'] = c
-    p = Post(**data)
-    p.save()
+    p = new_post()
     self.client.login(username=suser.username, password=PW)
     kwargs = {
       'status': 'D',
