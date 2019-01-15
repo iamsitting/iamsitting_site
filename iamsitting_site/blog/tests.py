@@ -29,6 +29,8 @@ def new_category(title):
 
 class BlogPageTest(TestCase):
 
+  # NewPost
+
   def test_GET_new_post_template(self):
     user = new_user('user1')
     self.client.login(username=user.username, password=PW)
@@ -54,6 +56,8 @@ class BlogPageTest(TestCase):
     self.assertEqual(response.status_code, 302)
     self.assertEqual(response['location'], reverse('blog:new-post'))
 
+  # PostRequests
+
   def test_GET_post_requests_list(self):
     # This is only for superusers
     suser = new_user('super', su=True)
@@ -64,7 +68,26 @@ class BlogPageTest(TestCase):
     p.save()
     self.client.login(username=suser.username, password=PW)
     response = self.client.get(reverse('blog:post-requests'))
+    self.assertTemplateUsed(response, 'blog/post_requests.html')
     self.assertIn('The Big Title', response.content.decode())
+
+  # modify_post_status
+
+  def test_GET_modify_post_status(self):
+    # This is only for supersusers
+    suser = new_user('super', su=True)
+    c = new_category(CATEGORY_TITLE)
+    data = NEW_POST_DATA.copy()
+    data['category'] = c
+    p = Post(**data)
+    p.save()
+    self.client.login(username=suser.username, password=PW)
+    kwargs = {
+      'status': 'D',
+      'id': p.id
+    }
+    self.client.get(reverse('blog:modify-post-status', kwargs=kwargs))
+    self.assertEquals(Post.objects.get(id=p.id).status, 'D')
 
 
 class UserModelTest(TestCase):
