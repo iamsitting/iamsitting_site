@@ -1,9 +1,9 @@
 from blog.models import Post
+from blog.tests.helpers import (CATEGORY_TITLE, NEW_POST_DATA, PW,
+                                new_category, new_post, new_user)
 from django.contrib.auth.models import User
 from django.test import TestCase
 from django.urls import reverse
-from test.helpers import (CATEGORY_TITLE, NEW_POST_DATA, PW, new_category,
-                          new_post, new_user)
 
 
 class BlogPageTest(TestCase):
