@@ -5,9 +5,27 @@ from django.urls import reverse
 
 class LoginPageTest(TestCase):
 
-  def test_login_returns_correct_html(self):
+  def test_GET_login_template(self):
     response = self.client.get(reverse('accounts:login'))
     self.assertTemplateUsed(response, 'registration/login.html')
+
+
+class SignUpPageTest(TestCase):
+
+  def test_GET_signup_template(self):
+    response = self.client.get(reverse('accounts:signup'))
+    self.assertTemplateUsed(response, 'accounts/signup.html')
+
+  def test_POST_signup(self):
+    data = {
+      'username': 'tester',
+      'email': 'tester@iamsitting.com',
+      'password': 'testpassword'
+    }
+    response = self.client.post(
+        reverse('accounts:signup'),
+        data=data)
+    self.assertEqual(response.status_code, 200)
 
 
 class UserModelTest(TestCase):

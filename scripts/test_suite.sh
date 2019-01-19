@@ -19,7 +19,7 @@ python manage.py test --verbosity=2
 
 
 echo "killing processes"
-ps aux | grep npm | awk '{print $2}' | xargs kill -9
+ps aux | grep webpack | awk '{print $2}' | xargs kill -9
 ps aux | grep runserver | awk '{print $2}' | xargs kill -9
 echo "test suite finished"
 
