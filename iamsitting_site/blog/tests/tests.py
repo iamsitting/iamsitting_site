@@ -1,7 +1,6 @@
 from blog.models import Post
-from blog.tests.helpers import (CATEGORY_TITLE, NEW_POST_DATA, POST_BODY,
-                                POST_SUBTITLE, POST_TITLE, PW, new_category,
-                                new_post, new_user)
+from blog.tests.helpers import (CATEGORY_TITLE, NEW_POST_DATA, PW,
+                                new_category, new_post, new_user)
 from django.contrib.auth.models import User
 from django.test import TestCase
 from django.urls import reverse
@@ -22,7 +21,7 @@ class NewPostTest(TestCase):
     self.client.post(
       reverse('blog:new-post'),
       data=NEW_POST_DATA)
-    self.assertEqual('The Big Title', Post.objects.first().title)
+    self.assertEqual(NEW_POST_DATA['title'], Post.objects.first().title)
 
   def test_POST_new_post_redirect(self):
     user = new_user('user1')
@@ -35,16 +34,54 @@ class NewPostTest(TestCase):
     self.assertEqual(response['location'], reverse('blog:new-post'))
 
 
-class BlogPostRequestsTest(TestCase):
+class EditPostTest(TestCase):
+
+  def test_GET_edit_post_template(self):
+    suser = new_user('super', su=True)
+    p = new_post()
+    self.client.login(username=suser.username, password=PW)
+    response = self.client.get(p.get_update_url())
+    self.assertTemplateUsed(response, 'blog/postform.html')
+    self.assertIn(p.title, response.content.decode())
+
+  def test_POST_edit_post(self):
+    suser = new_user('super', su=True)
+    p = new_post()
+    self.client.login(username=suser.username, password=PW)
+    data = {
+      'title': p.title,
+      'subtitle': p.subtitle,
+      'body': "This a new body.",
+      'category': p.category
+    }
+    self.client.post(p.get_update_url(), data=data)
+    self.assertNotEqual(p.body, Post.objects.get(id=p.id).body)
+
+  def test_POST_edit_post_redirect(self):
+    suser = new_user('super', su=True)
+    p = new_post()
+    self.client.login(username=suser.username, password=PW)
+    data = {
+      'title': p.title,
+      'subtitle': p.subtitle,
+      'body': "This a new body.",
+      'category': p.category
+    }
+    response = self.client.post(p.get_update_url(), data=data)
+    self.assertEqual(response.status_code, 302)
+    self.assertEqual(response['location'], reverse('blog:new-post'))
+
+
+class PostRequestsTest(TestCase):
 
   def test_GET_post_requests_list(self):
     # This is only for superusers
     suser = new_user('super', su=True)
-    new_post()
+    p = new_post()
     self.client.login(username=suser.username, password=PW)
     response = self.client.get(reverse('blog:post-requests'))
     self.assertTemplateUsed(response, 'blog/post_requests.html')
-    self.assertIn('The Big Title', response.content.decode())
+    self.assertIn(p.title, response.content.decode())
 
 
 class ModifyPostStatusTest(TestCase):
@@ -66,8 +103,7 @@ class ViewPostTest(TestCase):
 
   def test_GET_view_post_template(self):
     p = new_post()
-    kwargs = {'slug': p.slug}
-    response = self.client.get(reverse('blog:post', kwargs=kwargs))
+    response = self.client.get(p.get_absolute_url())
     self.assertTemplateUsed(response, 'blog/view_post.html')
     self.assertIn(p.title, response.content.decode())
 
