@@ -5,16 +5,15 @@
 
 <h2>Sign up</h2>
 <form method="post" action="#" class="alt">
-  
+
   {% if form.non_field_errors %}
   <div class="control-group error" style="color: red">
   {{ form.non_field_errors.as_text|safe }}
   </div>
   {% endif %}
-  
+
   <div class="row uniform">
     {% csrf_token %}
-    
     {% for field in form %}
       <div class="12u$">
         <p>
@@ -29,7 +28,6 @@
         </p>
       </div>
     {% endfor %}
-    
     <div class="12u$">
       <ul class="actions">
         <li><input type="submit" value="Sign Up" class="special" /></li>

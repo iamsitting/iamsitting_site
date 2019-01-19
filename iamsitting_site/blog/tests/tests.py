@@ -6,9 +6,7 @@ from django.test import TestCase
 from django.urls import reverse
 
 
-class BlogPageTest(TestCase):
-
-  # NewPost
+class NewPostTest(TestCase):
 
   def test_GET_new_post_template(self):
     user = new_user('user1')
@@ -35,7 +33,8 @@ class BlogPageTest(TestCase):
     self.assertEqual(response.status_code, 302)
     self.assertEqual(response['location'], reverse('blog:new-post'))
 
-  # PostRequests
+
+class BlogPostRequestsTest(TestCase):
 
   def test_GET_post_requests_list(self):
     # This is only for superusers
@@ -46,7 +45,8 @@ class BlogPageTest(TestCase):
     self.assertTemplateUsed(response, 'blog/post_requests.html')
     self.assertIn('The Big Title', response.content.decode())
 
-  # modify_post_status
+
+class ModifyPostStatusTest(TestCase):
 
   def test_GET_modify_post_status(self):
     # This is only for supersusers
