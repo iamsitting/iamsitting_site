@@ -5,14 +5,14 @@ from django.urls import reverse
 
 class LoginPageTest(TestCase):
 
-  def test_login_returns_correct_html(self):
+  def test_GET_login_template(self):
     response = self.client.get(reverse('accounts:login'))
     self.assertTemplateUsed(response, 'registration/login.html')
 
 
 class SignUpPageTest(TestCase):
 
-  def test_signup_returns_correct_html(self):
+  def test_GET_signup_template(self):
     response = self.client.get(reverse('accounts:signup'))
     self.assertTemplateUsed(response, 'accounts/signup.html')
 

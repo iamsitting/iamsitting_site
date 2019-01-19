@@ -1,6 +1,7 @@
 from blog.models import Post
-from blog.tests.helpers import (CATEGORY_TITLE, NEW_POST_DATA, PW,
-                                new_category, new_post, new_user)
+from blog.tests.helpers import (CATEGORY_TITLE, NEW_POST_DATA, POST_BODY,
+                                POST_SUBTITLE, POST_TITLE, PW, new_category,
+                                new_post, new_user)
 from django.contrib.auth.models import User
 from django.test import TestCase
 from django.urls import reverse
@@ -59,6 +60,16 @@ class ModifyPostStatusTest(TestCase):
     }
     self.client.get(reverse('blog:modify-post-status', kwargs=kwargs))
     self.assertEquals(Post.objects.get(id=p.id).status, 'D')
+
+
+class ViewPostTest(TestCase):
+
+  def test_GET_view_post_template(self):
+    p = new_post()
+    kwargs = {'slug': p.slug}
+    response = self.client.get(reverse('blog:post', kwargs=kwargs))
+    self.assertTemplateUsed(response, 'blog/view_post.html')
+    self.assertIn(p.title, response.content.decode())
 
 
 class UserModelTest(TestCase):

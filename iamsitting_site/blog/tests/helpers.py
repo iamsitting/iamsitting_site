@@ -3,10 +3,13 @@ from blog.models import Category, Post
 
 PW = "badpassword"
 CATEGORY_TITLE = "History"
+POST_TITLE = 'The Big Title'
+POST_SUBTITLE = 'A subtitle'
+POST_BODY = 'Here is some text for you.'
 NEW_POST_DATA = {
-  'title': 'The Big Title',
-  'subtitle': 'A subtitle',
-  'body': 'body text',
+  'title': POST_TITLE,
+  'subtitle': POST_SUBTITLE,
+  'body': POST_BODY,
   'category': CATEGORY_TITLE}
 
 

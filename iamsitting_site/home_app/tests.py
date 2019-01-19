@@ -4,28 +4,28 @@ from django.urls import reverse
 
 class HomePageTest(TestCase):
 
-  def test_home_returns_correct_html(self):
+  def test_GET_home_template(self):
     response = self.client.get('/')
     self.assertTemplateUsed(response, 'home_app/index.html')
 
 
 class AboutMeTest(TestCase):
 
-  def test_about_me(self):
+  def test_GET_about_me_template(self):
     response = self.client.get(reverse('home:about_me'))
     self.assertTemplateUsed(response, 'home_app/about_me.html')
 
 
 class CVTest(TestCase):
 
-  def test_my_cv(self):
+  def test_GET_my_cv_template(self):
     response = self.client.get(reverse('home:my_cv'))
     self.assertTemplateUsed(response, 'home_app/cv.html')
 
 
 class CycleXProTest(TestCase):
 
-  def test_cycle_x_pro(self):
+  def test_GET_cycle_x_pro_template(self):
     response = self.client.get(reverse('home_app:cycle_x_pro'))
     self.assertTemplateUsed(response, 'home_app/cycle_x_pro.html')
 
