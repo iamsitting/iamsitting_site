@@ -1,3 +1,5 @@
+import time
+
 from django.contrib.auth.models import User
 from django.test import LiveServerTestCase
 from django.urls import reverse
@@ -19,12 +21,14 @@ class NewVisitorTest(LiveServerTestCase):
 
   def login_to_site(self):
     self.browser.get(self.rev('accounts:login'))
-    username = self.browser.find_element_by_name('username')
+    form = self.browser.find_element_by_tag_name('form')
+    username = form.find_element_by_name('username')
+    password = form.find_element_by_name('password')
+    submit_button = form.find_element_by_xpath("//input[@type='submit']")
     username.send_keys(self.superuser.username)
-    password = self.browser.find_element_by_name('password')
     password.send_keys(self.PASSWORD)
-    submit_button = self.browser.find_element_by_xpath('//*[@id="main"]/section/form/div/div[3]/ul/li/input')
     submit_button.click()
+    time.sleep(0.2)
     # self.assertEquals(self.browser.current_url, self.live_server_url)
 
   def setUp(self):
@@ -50,7 +54,8 @@ class NewVisitorTest(LiveServerTestCase):
     self.assertIn('To reduce costs', alert_text)
 
     # dismiss website alert
-    dismiss_button = self.browser.find_element_by_xpath("//button[@data-dismiss='alert']")
+    alert_div = self.browser.find_element_by_id("alert-section")
+    dismiss_button = alert_div.find_element_by_tag_name("button")
     dismiss_button.click()
     self.assertEquals(dismiss_button.is_displayed(), False)
 
@@ -60,7 +65,7 @@ class NewVisitorTest(LiveServerTestCase):
     self.browser.get(self.live_server_url)
 
     # user clicks on login
-    login_button = self.browser.find_element_by_xpath('//*[@id="header"]/a')
+    login_button = self.browser.find_element_by_id("login-link")
     login_button.click()
     self.assertEquals(self.browser.current_url, self.rev('accounts:login'))
 
@@ -70,6 +75,7 @@ class NewVisitorTest(LiveServerTestCase):
     self.login_to_site()
 
     # user clicks to post requests page
-    post_req_button = self.browser.find_element_by_xpath('//*[@id="navPanel"]/nav/ul[1]/li[3]/a')
+    nav = self.browser.find_element_by_tag_name('nav')
+    post_req_button = nav.find_element_by_xpath('//*[@id="post-requests-link"]')
     post_req_button.click()
     self.assertEquals(self.browser.current_url, self.rev('blog:post-requests'))
