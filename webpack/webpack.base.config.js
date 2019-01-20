@@ -39,7 +39,7 @@ module.exports = {
         use: [
           {
             loader: 'babel-loader',
-            query: { 'plugins': ['react-hot-loader/babel'], 'presets': ['env', 'react']}
+            query: { 'plugins': ['react-hot-loader/babel'], 'presets': ['env', 'react', 'stage-2']}
           }
         ]
       }, //js, jsx

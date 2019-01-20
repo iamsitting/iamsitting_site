@@ -1,21 +1,16 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import {Provider} from "react-redux";
-import {createStore, compose} from 'redux';
-import initialState from 'ireact/blog/utils/initialState';
-import reducer from 'ireact/blog/utils/reducer';
-import {AppContainer} from 'react-hot-loader';
+import {createStore, compose} from "redux";
+import initialState from "ireact/blog/utils/initialState";
+import reducer from "ireact/blog/utils/reducer";
+import {AppContainer} from "react-hot-loader";
+import BlogCMS from "ireact/blog/components/BlogCMS";
 
 const store = createStore(reducer, initialState, compose(
   window.devToolsExtension ? window.devToolsExtension() : f => f
 ));
 window.store = store;
-
-function Welcome(props) {
-  return <h1>Hello, {props.name}</h1>;
-}
-
-const element = <Welcome name="world" />;
 
 const render = (Component, reactRoot) => {
   if (!reactRoot) {
@@ -34,6 +29,11 @@ const render = (Component, reactRoot) => {
 let postformRoot = document.getElementById('react-root');
 
 render(
-  element, postformRoot
+  BlogCMS, postformRoot
 );
 
+if (module.hot) {
+  module.hot.accept("ireact/blog/components/BlogCMS"), () => {
+    render(BlogCMS, postformRoot);
+  }
+}
