@@ -3,11 +3,12 @@
 {% load staticfiles %}
 {% load widget_tweaks %}
 {% block extra_head %}
-{% render_bundle 'postform' %}
 {% endblock %}
 {% block title %}{{page_title}}{% endblock %}
 {% block content %}
- <section id='react-root'>
+ <section>
+  <div id='react-root'></div>
+  {% render_bundle 'postform' 'js'%}
 </section>
 
 {% endblock %}
