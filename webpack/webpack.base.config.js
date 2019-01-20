@@ -11,6 +11,9 @@ module.exports = {
     ],
     blog_post: [
       '../iamsitting_site/blog/static/blog/js/index'
+    ],
+    postform: [
+      '../iamsitting_site/blog/static/blog/js/postform'
     ]
   },
 

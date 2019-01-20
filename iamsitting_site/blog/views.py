@@ -17,7 +17,7 @@ debug = logging.getLogger('debugger')
 
 class NewPost(CreateView):
   model = Post
-  template_name = 'blog/postform.html'
+  template_name = 'blog/postform2.html'
   form_class = PostForm
 
   def get_context_data(self, **kwargs):

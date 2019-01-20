@@ -16,6 +16,11 @@ var devConfig = {
     blog_post: [
       'webpack-dev-server/client?http://localhost:3000',
       'webpack/hot/only-dev-server',
+    ],
+    postform: [
+      'react-hot-loader/patch',
+      'webpack-dev-server/client?http://localhost:3000',
+      'webpack/hot/only-dev-server',
     ]
   },  //-entry
 
