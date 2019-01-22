@@ -1,4 +1,4 @@
-import BlogPostForm from "../components/BlogPostForm"
+import { BlogPostForm } from "../components/BlogPostForm"
 import { connect } from "react-redux"
 
 const mapStateToProps = state => {
@@ -8,7 +8,9 @@ const mapStateToProps = state => {
 }
 
 const mapDispatchToProps = dispath => {
-  return;
+  return {
+    doSomething: () => {},
+  };
 }
 
 export const BlogPostFormContainer = connect(mapStateToProps, mapDispatchToProps)(BlogPostForm)
