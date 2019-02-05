@@ -3,7 +3,7 @@ var WebpackDevServer = require('webpack-dev-server')
 var devConfig = require('./webpack.development.config')
 
 new WebpackDevServer(webpack(devConfig), {
-  publicPath: devConfig.output.pubblicPath,
+  publicPath: devConfig.output.publicPath,
   hot: true,
   inline: true,
   historyApiFallback: true,

@@ -7,13 +7,13 @@ module.exports = {
 
   entry: {
     main: [
-      '../iamsitting_site/templates/js/index', // entry point of our app. assets/js/index.js should require other js modules and dependencies it needs
+      '../iamsitting_site/templates/js/index.js', // entry point of our app. assets/js/index.js should require other js modules and dependencies it needs
     ],
     blog_post: [
-      '../iamsitting_site/blog/static/blog/js/index'
+      '../iamsitting_site/blog/static/blog/js/index.js'
     ],
     postform: [
-      '../iamsitting_site/blog/static/blog/js/postform'
+      '../frontend/ireact/blog/postform.js'
     ]
   },
 
