@@ -1,9 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-//import {render} from "react-dom";
-
 import { Provider } from "react-redux"
-import {createStore, compose} from "redux"
+import { createStore, compose } from "redux"
 import initialState from "ireact/blog/utils/initialState"
 import reducer from "ireact/blog/utils/reducer"
 import { AppContainer } from "react-hot-loader"
@@ -30,29 +28,29 @@ let render = (Component, reactRoot) => {
 
 
 if(module.hot) {
-    // Support hot reloading of components
-    // and display an overlay for runtime errors
-    const renderApp = render;
-    const renderError = (error) => {
-        const RedBox = require("redbox-react");
-        ReactDOM.render(
-            <RedBox error={error} />,
-            rootEl,
-        );
-    };
+  // Support hot reloading of components
+  // and display an overlay for runtime errors
+  const renderApp = render;
+  const renderError = (error) => {
+    const RedBox = require("redbox-react");
+      ReactDOM.render(
+        <RedBox error={error} />,
+        rootEl,
+      );
+  };
 
-    render = () => {
-        try {
-            renderApp(BlogCMS, postformRoot);
-        }
-        catch(error) {
-            renderError(error);
-        }
-    };
+  render = () => {
+    try {
+      renderApp(BlogCMS, postformRoot);
+    }
+    catch(error) {
+      renderError(error);
+    }
+  };
 
-    module.hot.accept("ireact/blog/components/BlogCMS", () => {
-        setTimeout(render, BlogCMS, postformRoot);
-    });
+  module.hot.accept("ireact/blog/components/BlogCMS", () => {
+    setTimeout(render, BlogCMS, postformRoot);
+  });
 }
 
 render(BlogCMS, postformRoot);
