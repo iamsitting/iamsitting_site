@@ -1,5 +1,10 @@
 const initialState = {
-  foo: 'bar',
+  postForm: {
+    title: "",
+    subtitle: "",
+    body: "",
+    category: ""
+  }
 }
 
 export default initialState;

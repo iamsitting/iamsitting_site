@@ -1,7 +1,8 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { Provider } from "react-redux"
-import { createStore, compose } from "redux"
+import { applyMiddleware, createStore, compose } from "redux"
+import thunkMiddleware from 'redux-thunk'
 import initialState from "ireact/blog/utils/initialState"
 import reducer from "ireact/blog/utils/reducer"
 import { AppContainer } from "react-hot-loader"
@@ -10,6 +11,7 @@ import { BlogCMS } from "ireact/blog/components/BlogCMS"
 
 const postformRoot = document.getElementById('root');
 const store = createStore(reducer, initialState, compose(
+  applyMiddleware(thunkMiddleware),
   window.devToolsExtension ? window.devToolsExtension() : f => f
 ));
 window.store = store;

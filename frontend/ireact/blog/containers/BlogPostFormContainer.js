@@ -1,15 +1,21 @@
 import { BlogPostForm } from "../components/BlogPostForm"
 import { connect } from "react-redux"
+import { postPost } from '../utils/actions'
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
-    'data': 'foo',
+    postForm: {
+      title: state.postForm.title,
+      subtitle: state.postForm.subtitle,
+      body: state.postForm.body,
+      category: state.postForm.category
+    }
   };
 }
 
-const mapDispatchToProps = dispath => {
+const mapDispatchToProps = (dispath) => {
   return {
-    doSomething: () => {},
+    postPost: (values) => { dispatch(postPost(values)) },
   };
 }
 

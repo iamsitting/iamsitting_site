@@ -43,6 +43,7 @@
     "react-redux": "^6.0.0",
     "redbox-react": "^1.6.0",
     "redux": "^4.0.1",
+    "redux-thunk": "^2.3.0",
     "resolve-url-loader": "^3.0.0",
     "sass-loader": "^7.0.3",
     "skel-framework-npm": "^1.0.1",
