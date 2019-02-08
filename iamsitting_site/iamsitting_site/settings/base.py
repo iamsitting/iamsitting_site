@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     # modules
     'accounts',
     'blog',
+    'journal',
     'home_app',
     'rest_api',
     'utils',
