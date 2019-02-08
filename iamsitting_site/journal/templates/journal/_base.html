@@ -1,0 +1,32 @@
+{% load staticfiles %}
+<html>
+  <head>
+    <title>iamsitting.com |
+      {% block title %}{% endblock %}
+    </title>
+    <meta charset="utf-8"/>
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, user-scalable=no"/>
+    <link rel="shortcut icon" type="image/png" href="{% static 'favicon.ico' %}"/>
+    {% block extra_head %}{% endblock %}
+  </head>
+  <body class="is-loading">
+    {% block content %}{% endblock %}
+      <!-- Copyright -->
+      <div id="copyright">
+        <ul>
+          <li>&copy; iamsitting</li>
+          <li>Design:
+            <a href="https://html5up.net">HTML5 UP</a>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+    {% block scripts %}
+    {% endblock %}
+  </body>
+</html>
+
+
