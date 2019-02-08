@@ -1,20 +1,27 @@
 import React from "react";
+import Form from 'react-formal'
+import * as yup from 'yup';
+
+let modelSchema = (props) => {
+  return yup.object({
+    title: yup.string().required(),
+    subtitle: yup.string().required(),
+    body: yup.string().required(),
+    category: yup.string().required(),
+  });
+}
 
 export const BlogPostForm = ({...props}) => {
+  let schema = modelSchema(props);
   return (
-    <React.Fragment>
-      <form onSubmit={props.postPost}>
-        <label> Title </label>
-        <input type="text" name="title" />
-        <label> Subtitle </label>
-        <input type="text" name="subtitle" />
-        <label> Body </label>
-        <textarea name="body"></textarea>
-        <label> Category </label>
-        <select></select>
-        <button type="submmit">Submit</button>
-      </form>
-    </React.Fragment>
+    <Form
+      schema={schema}
+      value={props.postForm}
+      onSubmit={props.postPost}
+      delay={100}
+    >
+    <Form.Button type='submit'>Submit</Form.Button>
+    </Form>
   );
 }
 
