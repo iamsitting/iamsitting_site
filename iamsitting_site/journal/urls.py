@@ -7,5 +7,5 @@ app_name = "journal"
 
 urlpatterns = [
   path('api/', include(router.urls)),
-  path('', TemplateView.as_view(template_name='index.html')),
+  path('', TemplateView.as_view(template_name='journal/index.html')),
 ]
