@@ -5,7 +5,6 @@ key.pub
 *.egg-info
 *.pot
 *.py[co]
-.tox/
 *secrets.py
 
 __pycache__
