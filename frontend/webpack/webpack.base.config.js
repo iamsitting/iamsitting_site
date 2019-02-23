@@ -1,21 +1,22 @@
 var path = require("path")
 var webpack = require('webpack')
 var BundleTracker = require('webpack-bundle-tracker')
+var backend = path.resolve(__dirname, '../../backend/')
 
 module.exports = {
   context: __dirname,
 
   entry: {
     main: [
-      '../../iamsitting_site/templates/js/index', // entry point of our app. assets/js/index.js should require other js modules and dependencies it needs
+      path.resolve(backend, 'iamsitting_site/templates/js/index')
     ],
     blog_post: [
-      '../../iamsitting_site/blog/static/blog/js/index'
+      path.resolve(backend, 'iamsitting_site/blog/static/blog/js/index')
     ]
   },
 
   output: {
-    path: path.resolve(__dirname, '../../iamsitting_site/static/bundles/'),
+    path: path.resolve(backend, 'iamsitting_site/static/bundles/'),
     filename: "[name].js",
   },
 
