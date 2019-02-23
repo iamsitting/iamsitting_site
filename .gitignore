@@ -11,6 +11,7 @@ venv/
 
 __pycache__
 MANIFEST
+bundles/
 dist/
 docs/_build/
 docs/locale/

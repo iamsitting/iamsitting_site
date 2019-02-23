@@ -10,7 +10,7 @@ while ! grep -qw "Compiled successfully." run_webpack.log; do sleep 5; done
 echo 'Webpack server successfully started.'
 
 echo "Loading Django ... ..."
-cd ../iamsitting_site
+cd ../backend/iamsitting_site
 python manage.py runserver &
 sleep 10
 echo 'Hopefully Django server successfully started.'
