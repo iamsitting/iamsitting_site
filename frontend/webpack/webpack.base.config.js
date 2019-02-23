@@ -1,6 +1,7 @@
 var path = require("path")
 var webpack = require('webpack')
 var BundleTracker = require('webpack-bundle-tracker')
+var frontend = path.resolve(__dirname, '../../frontend/')
 var backend = path.resolve(__dirname, '../../backend/')
 
 module.exports = {
@@ -8,10 +9,10 @@ module.exports = {
 
   entry: {
     main: [
-      path.resolve(backend, 'iamsitting_site/templates/js/index')
+      path.resolve(frontend, 'libraries/base_theme/js/index')
     ],
     blog_post: [
-      path.resolve(backend, 'iamsitting_site/blog/static/blog/js/index')
+      path.resolve(frontend, 'libraries/blog/js/index')
     ]
   },
 
