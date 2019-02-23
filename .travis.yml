@@ -12,11 +12,13 @@ env:
   - DJANGO_SETTINGS_MODULE=iamsitting_site.settings.travis DJANGO_VERSION=2.1.5
 install:
   - pip install -r requirements/test.txt
+  - cd frontend
   - npm install
 before_script:
   - psql -c 'create database iamsitting_site;' -U postgres
   - python iamsitting_site/manage.py makemigrations
 script:
   - python iamsitting_site/manage.py migrate
+  - cd frontend
   - npm run build
 

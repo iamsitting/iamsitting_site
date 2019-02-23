@@ -3,13 +3,15 @@
 export DJANGO_SETTINGS_MODULE=iamsitting_site.settings.travis
 
 echo "Loading webpack ... ..."
+cd frontend
 npm run dev > run_webpack.log 2>&1 &
 sleep 2
 while ! grep -qw "Compiled successfully." run_webpack.log; do sleep 5; done
 echo 'Webpack server successfully started.'
 
 echo "Loading Django ... ..."
-python iamsitting_site/manage.py runserver &
+cd ../iamsitting_site
+python manage.py runserver &
 sleep 10
 echo 'Hopefully Django server successfully started.'
 

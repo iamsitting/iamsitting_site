@@ -29,7 +29,7 @@ class Post(models.Model):
   author = models.ForeignKey(User, null=True, on_delete=models.SET_NULL)
   title = models.CharField(max_length=100, unique=True, blank=True, null=True)
   slug = models.SlugField(unique=True, blank=True, null=True)
-  body = HTMLField(blank=True)
+  body = models.TextField(blank=True)
   status = models.CharField(max_length=1, choices=POST_STATUS, default='P')
   posted_on = models.DateField(db_index=True, auto_now_add=True)
   post_date = models.DateField(blank=True)

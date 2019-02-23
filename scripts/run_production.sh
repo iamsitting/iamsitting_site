@@ -8,8 +8,9 @@ git pull
 pip install -r requirements/production.txt
 iamsitting_site/manage.py makemigrations
 iamsitting_site/manage.py migrate
+cd frontend
 npm install
 npm run build
-iamsitting_site/manage.py collectstatic
+../iamsitting_site/manage.py collectstatic
 sudo service gunicorn start
 
