@@ -10,7 +10,9 @@ services:
   web:
     build:
       context: ./backend
-      dockerfile: ./Dockerfile.django-prod
+      dockerfile: ./Dockerfile
+    env_file:
+      - ./heroku.env
     ports:
       - 8000:8000
     depends_on:
