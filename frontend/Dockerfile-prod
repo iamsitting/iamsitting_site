@@ -1,0 +1,9 @@
+FROM node
+
+WORKDIR /app/frontend
+COPY libraries /app/frontend/libraries
+COPY webpack /app/frontend/webpack
+COPY package.json /app/frontend/package.json
+RUN npm install
+CMD npm run build
+

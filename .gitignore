@@ -7,6 +7,7 @@ key.pub
 *.py[co]
 .tox/
 *secrets.py
+*.env
 venv/
 
 __pycache__

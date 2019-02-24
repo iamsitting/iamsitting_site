@@ -5,14 +5,20 @@ services:
     image: postgres
     volumes:
       - postgres_data:/var/lib/postgresql/data/
+    env_file:
+      - ./postgres.env
   django:
-    build: ./backend
+    build:
+      context: ./backend
+      dockerfile: ./Dockerfile-prod
     ports:
       - 8000:8000
     depends_on:
       - db
   frontend:
-    build: ./frontend
+    build:
+      context: ./frontend
+      dockerfile: ./Dockerfile-prod
     volumes:
       - node-modules:/app/node_modules
     ports:
