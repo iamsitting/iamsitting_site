@@ -7,14 +7,15 @@ services:
       - postgres_data:/var/lib/postgresql/data/
     env_file:
       - ./postgres.env
-  django:
+  web:
     build:
       context: ./backend
-      dockerfile: ./Dockerfile-prod
+      dockerfile: ./Dockerfile.django-prod
     ports:
       - 8000:8000
     depends_on:
       - db
+      - frontend
   frontend:
     build:
       context: ./frontend

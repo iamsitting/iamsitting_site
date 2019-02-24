@@ -3,5 +3,6 @@
 .tx
 __pycache__
 *.pyc
+*.env
 node_modules/
 migrations/
