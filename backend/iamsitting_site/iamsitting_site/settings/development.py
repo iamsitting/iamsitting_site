@@ -7,12 +7,11 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'iamsitting_site',
-        'USER': 'iamsitting',
-        'PASSWORD': 'iamsitting94',
-        'HOST': 'localhost',
-        'PORT': '',
-      }
+        'NAME': 'postgres',
+        'USER': 'postgres',
+        'HOST': 'db',
+        'PORT': 5432,
+    }
 }
 
 STATIC_ROOT = ''

@@ -6,7 +6,6 @@ from django.contrib.auth.models import User
 from django.urls import reverse
 from django.db import models
 from django.template.defaultfilters import slugify
-from tinymce.models import HTMLField
 
 """ blog models.py
 The blog module handles all blog related data
