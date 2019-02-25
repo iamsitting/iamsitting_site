@@ -37,8 +37,8 @@ INSTALLED_APPS = [
     # modules
     'accounts',
     'blog',
+    'demo',
     'home_app',
-    'rest_api',
     'utils',
 
 ]
@@ -126,39 +126,4 @@ WEBPACK_LOADER = {
         'BUNDLE_DIR_NAME': 'bundles/',
         'STATS_FILE': os.path.join(BASE_DIR, '../../frontend/webpack/webpack-stats.json'),
     }
-}
-
-# Logging Configuration
-LOGGING = {
-    'version': 1,
-    'disable_existing_loggers': False,
-    'handlers': {
-        'feedback': {
-            'level': 'DEBUG',
-            'class': 'logging.FileHandler',
-            'filename': os.path.join(BASE_DIR, "logs/feedback.log"),
-        },
-        'user_debug': {
-            'level': 'DEBUG',
-            'class': 'logging.FileHandler',
-            'filename': os.path.join(BASE_DIR, "logs/debug.log"),
-        },
-    },
-    'loggers': {
-        'django': {
-            'handlers': ['feedback'],
-            'level': 'DEBUG',
-            'propagate': True,
-        },
-        'debugger': {
-            'handlers': ['user_debug', 'feedback'],
-            'level': 'DEBUG',
-            'propagate': True,
-        },
-        'django.security.csrf': {
-            'handlers': ['feedback'],
-            'level': 'WARNING',
-            'propagate': True,
-        },
-    },
 }

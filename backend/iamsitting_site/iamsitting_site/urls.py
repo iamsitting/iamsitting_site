@@ -25,7 +25,7 @@ urlpatterns = [
     url(r'^', include('home_app.urls', namespace="home")),
     url(r'^accounts/', include('accounts.urls', namespace="accounts")),
     url(r'^blog/', include('blog.urls', namespace="blog")),
-    url(r'^api/', include('rest_api.urls', namespace='api')),
+    url(r'^demo/', include('demo.urls', namespace="demo")),
     url(r'^robots\.txt$', TemplateView.as_view(template_name='robots.txt', content_type='text/plain')),
     # admin urls
     url(r'^admin/', admin.site.urls),

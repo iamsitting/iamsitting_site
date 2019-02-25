@@ -13,6 +13,9 @@ module.exports = {
     ],
     blog_post: [
       path.resolve(frontend, 'libraries/blog/js/index')
+    ],
+    demo: [
+      path.resolve(frontend, 'libraries/demo/js/index')
     ]
   },
 

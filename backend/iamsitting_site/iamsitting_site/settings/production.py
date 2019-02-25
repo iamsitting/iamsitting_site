@@ -49,3 +49,38 @@ if SSL_ON:
   SESSION_COOKIE_HTTPONLY = True
   SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
   SECURE_SSL_REDIRECT = True
+
+# Logging Configuration
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'feedback': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'filename': os.path.join(BASE_DIR, "logs/feedback.log"),
+        },
+        'user_debug': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'filename': os.path.join(BASE_DIR, "logs/debug.log"),
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['feedback'],
+            'level': 'DEBUG',
+            'propagate': True,
+        },
+        'debugger': {
+            'handlers': ['user_debug', 'feedback'],
+            'level': 'DEBUG',
+            'propagate': True,
+        },
+        'django.security.csrf': {
+            'handlers': ['feedback'],
+            'level': 'WARNING',
+            'propagate': True,
+        },
+    },
+}
