@@ -7,28 +7,32 @@ function basicInfo(id){
   let patientData = getPatient(id);
   let patientDose = getPatientDose(id);
   $("#patient-data").append(`
-    <table id="patient-table">
-      <thead>
-        <tr>
-          <th>KEY</th>
-          <th>VALUE</th>
-        </tr>
-      </thead>
-      <tbody>
-      </tbody>
-    </table>
+    <div class="table-responsive">
+      <table class='table table-hover' id="patient-table">
+        <thead>
+          <tr>
+            <th>KEY</th>
+            <th>VALUE</th>
+          </tr>
+        </thead>
+        <tbody>
+        </tbody>
+      </table>
+    </div>
     `)
   $("#patient-dose").append(`
-    <table id="dose-table">
-      <thead>
-        <tr>
-          <th>KEY</th>
-          <th>VALUE</th>
-        </tr>
-      </thead>
-      <tbody>
-      </tbody>
-    </table>
+    <div class="table-responsive">
+      <table class='table table-hover' id="dose-table">
+        <thead>
+          <tr>
+            <th>KEY</th>
+            <th>VALUE</th>
+          </tr>
+        </thead>
+        <tbody>
+        </tbody>
+      </table>
+    </div>
     `)
   patientData.then(function (data) {
     let $tbody = $('#patient-table').find('tbody');
