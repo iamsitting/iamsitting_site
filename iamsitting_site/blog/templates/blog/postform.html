@@ -3,7 +3,10 @@
 {% load staticfiles %}
 {% load widget_tweaks %}
 {% block extra_head %}
-{% render_bundle 'blog_post' %}
+{% render_bundle 'blog_post' 'css'%}
+{% endblock %}
+{% block scripts %}
+{% render_bundle 'blog_post' 'js'%}
 {% endblock %}
 {% block title %}{{page_title}}{% endblock %}
 {% block content %}
