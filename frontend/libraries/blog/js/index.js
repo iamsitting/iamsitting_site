@@ -1,5 +1,3 @@
-import * as $ from 'jquery';
-
 //import editor js files
 import 'froala-editor/js/froala_editor.pkgd.min.js';
 
@@ -11,6 +9,7 @@ import 'froala-editor/css/froala_editor.pkgd.min.css';
 import 'font-awesome/css/font-awesome.css';
 
 $(document).ready(() => {
-  $('.mceEditor').froalaEditor();
+  $('textarea.mceEditor').froalaEditor({
+     height: 300
+  });
 });
-
