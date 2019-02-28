@@ -10,6 +10,9 @@ git stash
 git pull
 cd ..
 pip install -r requirements/production.txt
+mkdir iamsitting_site/logs
+touch iamsitting_site/logs/feedback.log
+touch iamsitting_site/logs/debug.log
 python iamsitting_site/manage.py makemigrations
 python iamsitting_site/manage.py migrate
 cd ../frontend
