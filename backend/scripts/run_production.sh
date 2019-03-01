@@ -1,6 +1,5 @@
-#!/bin/bash 
+#!/bin/bash
 
-cd ..
 source ~/Envs/djenv/bin/activate
 sudo service gunicorn stop
 pg_dump iamsitting_site -U iamsitting -h localhost > ~/backups/iamsitting_dump.sql
@@ -9,11 +8,16 @@ pg_dump iamsitting_site -U iamsitting -h localhost > ~/backups/iamsitting_dump.s
 ./dropbox_uploader.sh upload ~/backups/iamsitting_dump.sql /
 git stash
 git pull
+cd ..
 pip install -r requirements/production.txt
-iamsitting_site/manage.py makemigrations
-iamsitting_site/manage.py migrate
+mkdir iamsitting_site/logs
+touch iamsitting_site/logs/feedback.log
+touch iamsitting_site/logs/debug.log
+python iamsitting_site/manage.py makemigrations
+python iamsitting_site/manage.py migrate
+cd ../frontend
 npm install
 npm run build
-iamsitting_site/manage.py collectstatic
+cd ../backend
+python iamsitting_site/manage.py collectstatic
 sudo service gunicorn start
-

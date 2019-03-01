@@ -17,7 +17,7 @@ def home(request):
   all_posts = Post.objects.filter(status='A').order_by('-post_date')
   posts = None
   ctx = {}
-  if len(all_posts) > 0:
+  if all_posts.exists():
     if all_posts.filter(slug=FEATURED_SLUG).exists():
       featured_post = all_posts.get(slug=FEATURED_SLUG)
     else:

@@ -28,11 +28,11 @@ EMAIL_HOST_PASSWORD = secrets.email_pass
 DATABASES = {
   'default': {
     'ENGINE': 'django.db.backends.postgresql_psycopg2',
-    'NAME': 'iamsitting_site',
+    'NAME': secrets.db_name,
     'USER': secrets.db_username,
     'PASSWORD': secrets.db_password,
-    'HOST': 'localhost',
-    'PORT': '',
+    'HOST': secrets.db_host,
+    'PORT': secrets.db_port,
   }
 }
 

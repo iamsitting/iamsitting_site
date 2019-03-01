@@ -124,7 +124,7 @@ LOGIN_REDIRECT_URL = '/'
 WEBPACK_LOADER = {
     'DEFAULT': {
         'BUNDLE_DIR_NAME': 'bundles/',
-        'STATS_FILE': os.path.join(BASE_DIR, '../webpack/webpack-stats.json'),
+        'STATS_FILE': os.path.join(BASE_DIR, '../../frontend/webpack/webpack-stats.json'),
     }
 }
 

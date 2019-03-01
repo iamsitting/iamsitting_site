@@ -1,21 +1,23 @@
 var path = require("path")
 var webpack = require('webpack')
 var BundleTracker = require('webpack-bundle-tracker')
+var frontend = path.resolve(__dirname, '../../frontend/')
+var backend = path.resolve(__dirname, '../../backend/')
 
 module.exports = {
   context: __dirname,
 
   entry: {
     main: [
-      '../iamsitting_site/templates/js/index', // entry point of our app. assets/js/index.js should require other js modules and dependencies it needs
+      path.resolve(frontend, 'libraries/base_theme/js/index')
     ],
     blog_post: [
-      '../iamsitting_site/blog/static/blog/js/index'
+      path.resolve(frontend, 'libraries/blog/js/index')
     ]
   },
 
   output: {
-    path: path.resolve('./iamsitting_site/static/bundles/'),
+    path: path.resolve(backend, 'iamsitting_site/static/bundles/'),
     filename: "[name].js",
   },
 
@@ -36,7 +38,6 @@ module.exports = {
         use: [
           {
             loader: 'babel-loader',
-            query: { 'plugins': ['react-hot-loader/babel'], 'presets': ['env', 'react']}
           }
         ]
       }, //js, jsx
@@ -56,11 +57,12 @@ module.exports = {
 
   resolve: {
     modules: [
-      './node_modules',
-      path.resolve(__dirname, '../frontend'),
+      path.resolve(__dirname, '../node_modules'),
+      path.resolve(__dirname, '../libraries'),
     ],
     alias: {
       jquery: "jquery/src/jquery"
     }
   }
 }
+
