@@ -38,7 +38,6 @@ INSTALLED_APPS = [
     'accounts',
     'blog',
     'home_app',
-    'rest_api',
     'utils',
 
 ]

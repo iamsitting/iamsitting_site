@@ -1,0 +1,66 @@
+{% load render_bundle from webpack_loader %}
+{% load staticfiles %}
+<html>
+  <head>
+    <title>iamsitting.com | Blog
+    </title>
+    <meta charset="utf-8"/>
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, user-scalable=no"/>
+    <link rel="shortcut icon" type="image/png" href="{% static 'favicon.ico' %}"/>
+    <!-- Extra Head -->
+    {% render_bundle 'blog2' 'css' %}
+  </head>
+  <body class="is-loading">
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
+      <div class="container">
+        <a class="navbar-brand" href="#">Blog</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="#">Home
+                <span class="sr-only">(current)</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">About</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Tab 1</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Tab 2</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Page Content -->
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12 text-center">
+          <h1 class="mt-5">A Bootstrap 4 Starter Template</h1>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- Footer -->
+    <footer class="page-footer">
+      <!-- Copyright -->
+      <div id="copyright" class="footer-copyright text-center">
+        &copy; 2019 iamsitting
+      </div>
+    </footer>
+
+  </div>
+    <!-- Scripts -->
+    {% render_bundle 'blog2' 'js' %}
+  </body>
+</html>
