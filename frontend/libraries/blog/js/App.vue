@@ -1,5 +1,14 @@
 <template>
-  <div>
-    <h1>Hello World!</h1>
+  <div class="full-width center-content">
+    <home name="World"/>
   </div>
 </template>
+
+<script>
+  import Home from './components/Home.vue'
+  export default {
+    components: {
+      Home
+    }
+  }
+</script>
