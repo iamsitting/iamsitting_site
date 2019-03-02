@@ -1,0 +1,195 @@
+{% load render_bundle from webpack_loader %}
+{% load staticfiles %}
+{% load widget_tweaks %}
+{% url 'home:home' as home_url %}
+{% url 'home:about_me' as about_me_url %}
+{% url 'home:my_cv' as cv_url %}
+{% url 'home:contact-me' as contact_me %}
+{% url 'accounts:login' as login_url %}
+{% url 'accounts:logout' as logout_url %}
+{% url 'blog:new-post' as newpost_url %}
+{% url 'blog:post-requests' as post_requests_url %}
+<!-- Massively by HTML5 UP html5up.net | @ajlkn Free for personal and commercial
+use under the CCA 3.0 license (html5up.net/license) -->
+<html>
+  <head>
+    <title>iamsitting.com |
+      {% block title %}{% endblock %}
+    </title>
+    <meta charset="utf-8"/>
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, user-scalable=no"/>
+    {% render_bundle 'main' 'css' %}
+    {% render_bundle 'main' 'js' %}
+    <link rel="shortcut icon" type="image/png" href="{% static 'favicon.ico' %}"/>
+    {% block extra_head %}{% endblock %}
+  </head>
+  <body class="is-loading">
+      <!-- Wrapper -->
+    <div id="wrapper" class="fade-in">
+
+      <div class="alert alert-dismissible alert-info" id="alert-section">
+        <button type="button" class="close" data-dismiss="alert">×</button>
+        <strong>To reduce costs, this site only runs from M-F 7:30a to 7:30p CST. Thanks for the support!</strong>
+      </div>
+
+      {% if request.path == home_url %}
+        <!-- Intro -->
+        <div id="intro">
+          <h1>This is<br/>
+            @iamsitting</h1>
+          <p>Someone who has many interests, but most importantly, has meaning in his
+            life. <!--Follow me
+              <a href="https://twitter.com/iamsitting">@iamsitting</a-->
+          </p>
+          <ul class="actions">
+            <li>
+              <a href="#header" class="button icon solo fa-arrow-down scrolly">Continue</a>
+            </li>
+          </ul>
+        </div>
+      {% endif %}
+
+      <!-- Header -->
+      <header id="header">
+        {% if user.is_authenticated %}
+        <a href="#" class="logo">{{user.username|safe}}</a>
+        {% else %}
+        <a href="{{login_url}}" class="logo" id="login-link">Login</a>
+        {% endif %}
+
+      </header>
+
+      <!-- Nav -->
+      <nav id="nav">
+        <ul class="links">
+          <li {% if request.path == home_url %} class="active" {% endif %}>
+            <a href="{{ home_url }}" id="home-link">Home</a>
+          </li>
+          {% if user.is_authenticated %}
+          <li {% if request.path == newpost_url %} class="active" {% endif %}>
+            <a href="{{ newpost_url }}" id="new-post-link">New Post</a>
+          </li>
+          {% if user.is_superuser %}
+          <li {% if request.path == post_requests_url %} class="active" {% endif %}>
+            <a href="{{ post_requests_url }}" id="post-requests-link">Post Requests</a>
+          </li>
+          {% endif %}
+          <li>
+            <a href="{{logout_url}}">Logout</a>
+          </li>
+          {% endif %}
+          <li {% if request.path == about_me_url %} class="active" {% endif %}>
+            <a href="{{ about_me_url }} " id="about-me-link">About Me</a>
+          </li>
+          <!--li {% if request.path == cv_url %} class="active" {% endif %}>
+            <a href="{{ cv_url }}" target="_blank">CV</a>
+          </li-->
+        </ul>
+        <ul class="icons">
+          <li>
+            <a href="#" class="icon fa-twitter">
+              <span class="label">Twitter</span></a>
+          </li>
+          <li>
+            <a href="#" class="icon fa-facebook">
+              <span class="label">Facebook</span></a>
+          </li>
+          <li>
+            <a href="#" class="icon fa-instagram">
+              <span class="label">Instagram</span></a>
+          </li>
+          <li>
+            <a href="#" class="icon fa-github">
+              <span class="label">GitHub</span></a>
+          </li>
+        </ul>
+      </nav>
+
+      <!-- Main -->
+      <div id="main">
+        {% block content %}{% endblock %}
+      </div>
+
+      <!-- Footer -->
+      <footer id="footer">
+        <section>
+          <form method="post" action="{{contact_me}}">
+            {% csrf_token %}
+            <div class="field">
+              <label for="name">Name</label>
+              <input type="text" name="name" id="name"/>
+            </div>
+            <div class="field">
+              <label for="email">Email</label>
+              <input type="text" name="email" id="email"/>
+            </div>
+            <div class="field">
+              <label for="message">Message</label>
+              <textarea name="message" id="message" rows="3"></textarea>
+            </div>
+            <ul class="actions">
+              <li><input type="submit" value="Send Message" onclick="return confirm('Are you sure?');"/></li>
+            </ul>
+          </form>
+        </section>
+        <section class="split contact">
+          <section class="alt">
+            <h3>Address</h3>
+            <p>1234 Somewhere Road #87257<br/>
+                Nashville, TN 00000-0000</p>
+          </section>
+          <section>
+            <h3>Phone</h3>
+            <p>
+                <a href="#">(000) 000-0000</a>
+            </p>
+          </section>
+          <section>
+            <h3>Email</h3>
+            <p>
+                <a href="#">info@untitled.tld</a>
+            </p>
+          </section>
+          <section>
+            <h3>Social</h3>
+            <ul class="icons alt">
+              <li>
+                <a href="#" class="icon alt fa-twitter">
+                  <span class="label">Twitter</span></a>
+              </li>
+              <li>
+                <a href="#" class="icon alt fa-facebook">
+                  <span class="label">Facebook</span></a>
+              </li>
+              <li>
+                <a href="#" class="icon alt fa-instagram">
+                  <span class="label">Instagram</span></a>
+              </li>
+              <li>
+                <a href="#" class="icon alt fa-github">
+                  <span class="label">GitHub</span></a>
+              </li>
+            </ul>
+          </section>
+        </section>
+      </footer>
+
+      <!-- Copyright -->
+      <div id="copyright">
+        <ul>
+          <li>&copy; iamsitting</li>
+          <li>Design:
+            <a href="https://html5up.net">HTML5 UP</a>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+    {% block scripts %}
+    {% endblock %}
+  </body>
+</html>
+
+

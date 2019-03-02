@@ -7,9 +7,12 @@ key.pub
 *.py[co]
 .tox/
 *secrets.py
+*.env
+venv/
 
 __pycache__
 MANIFEST
+bundles/
 dist/
 docs/_build/
 docs/locale/

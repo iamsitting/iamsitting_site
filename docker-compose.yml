@@ -1,0 +1,33 @@
+version: '3.7'
+
+services:
+  db:
+    image: postgres
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    env_file:
+      - ./postgres.env
+  web:
+    build:
+      context: ./backend
+      dockerfile: ./Dockerfile
+    env_file:
+      - ./heroku.env
+    ports:
+      - 8000:8000
+    depends_on:
+      - db
+      - frontend
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: ./Dockerfile-prod
+    volumes:
+      - node-modules:/app/node_modules
+    ports:
+      - 3000:3000
+
+volumes:
+ postgres_data:
+ node-modules:
+
