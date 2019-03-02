@@ -1,4 +1,4 @@
-import {BlogPost} from 'models'
+import {BlogPost} from './models'
 
 const routeHome = ['get', '#/',
   function(context){
@@ -9,7 +9,6 @@ const routeHome = ['get', '#/',
     });
     context.app.swap('');
     context.render('templates/home.template', {}).appendTo(context.$element());
-    $.
   }
 ];
 

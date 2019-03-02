@@ -10,7 +10,7 @@
       content="width=device-width, initial-scale=1, user-scalable=no"/>
     <link rel="shortcut icon" type="image/png" href="{% static 'favicon.ico' %}"/>
     <!-- Extra Head -->
-    {% render_bundle 'blog2' 'css' %}
+    {% render_bundle 'blog' 'css' %}
   </head>
   <body class="is-loading">
     <!-- Navigation -->
@@ -42,7 +42,7 @@
     </nav>
 
     <!-- Page Content -->
-    <div id="blog-app">
+    <div id="app">
     </div>
 
     <!-- Footer -->
@@ -55,6 +55,6 @@
 
   </div>
     <!-- Scripts -->
-    {% render_bundle 'blog2' 'js' %}
+    {% render_bundle 'blog' 'js' %}
   </body>
 </html>

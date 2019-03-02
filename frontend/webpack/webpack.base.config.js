@@ -2,6 +2,7 @@ var path = require("path")
 var webpack = require('webpack')
 var BundleTracker = require('webpack-bundle-tracker')
 var frontend = path.resolve(__dirname, '../../frontend/')
+var { VueLoaderPlugin } = require('vue-loader')
 var backend = path.resolve(__dirname, '../../backend/')
 
 module.exports = {
@@ -11,9 +12,9 @@ module.exports = {
     main: [
       path.resolve(frontend, 'libraries/base_theme/js/index')
     ],
-    blog_post: [
-      path.resolve(frontend, 'libraries/blog/js/index')
-    ]
+    blog: [
+      path.resolve(frontend, 'libraries/blog/js/app')
+    ],
   },
 
   output: {
@@ -22,22 +23,23 @@ module.exports = {
   },
 
   plugins: [
+    new VueLoaderPlugin(),
     new BundleTracker({path: __dirname, filename: './webpack-stats.json'}),
     new webpack.IgnorePlugin(/^\.\/locale$/, /moment\/js$/), // to not to load all locales
     new webpack.ProvidePlugin({
       $: "jquery",
-      jQuery: "jquery"
+      jQuery: "jquery",
     }),
   ],
 
   module: {
     rules: [
       {
-        test: /\.js$/,
+        test: /\.vue$/,
         exclude: [/node_modules/],
         use: [
           {
-            loader: 'babel-loader',
+            loader: 'vue-loader',
           }
         ]
       }, //js, jsx
