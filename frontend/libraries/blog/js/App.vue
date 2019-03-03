@@ -1,6 +1,6 @@
 <template>
   <div class="full-width center-content">
-    <home name="World"/>
+    <home/>
   </div>
 </template>
 
