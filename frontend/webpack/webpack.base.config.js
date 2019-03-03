@@ -11,8 +11,8 @@ module.exports = {
     main: [
       path.resolve(frontend, 'libraries/base_theme/js/index')
     ],
-    blog_post: [
-      path.resolve(frontend, 'libraries/blog/js/index')
+    blog2: [
+      path.resolve(frontend, 'libraries/blog/js/app')
     ]
   },
 
@@ -40,7 +40,10 @@ module.exports = {
             loader: 'babel-loader',
           }
         ]
-      }, //js, jsx
+      }, //js,
+      {
+        test: /\.hb$/, loader:"handlebars-loader"
+      },
       {
         test: /\.woff2?$|\.ttf$|\.eot$|\.svg$|\.png$|\.jpg$|\.gif$/,
         loader: [
@@ -63,6 +66,9 @@ module.exports = {
     alias: {
       jquery: "jquery/src/jquery"
     }
+  },
+  node: {
+    fs: "empty"
   }
 }
 

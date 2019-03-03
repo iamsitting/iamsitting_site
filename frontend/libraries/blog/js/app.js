@@ -1,8 +1,11 @@
-import 'sammy'
-import {appRoutes} from 'routes'
+import 'bootstrap'
+import "bootstrap/scss/bootstrap.scss"
+import * as sammy from 'sammy'
+import 'sammy/lib/plugins/sammy.handlebars'
+import {appRoutes} from './routes'
 
-let app = $.samme("#app", function() {
-  this.use('Template');
+let app = sammy("#app", function() {
+  this.use('Handlebars', 'hb');
   // this.around(function(callback) {
   //     let context = this;
   //     this.load('API_URL')
@@ -20,5 +23,5 @@ let app = $.samme("#app", function() {
 });
 
 $(document).ready(() => {
-  app.run('#/about/');
+  app.run('#/');
 });

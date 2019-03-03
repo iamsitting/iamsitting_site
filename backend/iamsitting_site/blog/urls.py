@@ -1,6 +1,7 @@
 from blog import views
 from blog.api import router
-from django.conf.urls import include, path, url
+from django.conf.urls import include, url
+from django.urls import path
 from django.views.generic import TemplateView
 
 app_name = "blog"

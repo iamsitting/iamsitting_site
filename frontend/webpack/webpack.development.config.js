@@ -13,7 +13,7 @@ var devConfig = {
       'webpack-dev-server/client?http://localhost:3000',
       'webpack/hot/only-dev-server',
     ],
-    blog_post: [
+    blog2: [
       'webpack-dev-server/client?http://localhost:3000',
       'webpack/hot/only-dev-server',
     ]
