@@ -64,7 +64,8 @@ module.exports = {
       path.resolve(__dirname, '../libraries'),
     ],
     alias: {
-      jquery: "jquery/src/jquery"
+      jquery: "jquery/src/jquery",
+      handlebars: "handlebars/dist/handlebars"
     }
   },
   node: {

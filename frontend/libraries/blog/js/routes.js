@@ -1,15 +1,18 @@
 import {BlogPost} from './models'
 
-const routeHome = ['get', '#/',
+const routeHome = ['get', 'blog/',
   function(context){
+    console.log('hello1');
     BlogPost.getPosts().then(function(data, context){
+      console.log(data);
       $.each(data, function(i, item) {
         context.log(item.title, item.subtitle, item.author);
       });
     });
     // context.app.swap('');
-    context.render('templates/home.hb', {}).appendTo(context.$element());
-    //this.partial('../templates/home.template')
+    console.log(context);
+    //context.render('templates/home.hb', {}).appendTo(context.$element());
+    this.partial('/blog/templates/home.hb')
   }
 ];
 
@@ -39,9 +42,9 @@ const routeArchives = ['get', '#/archives',
   }
 ]
 
-const routeTemplates = ['get', 'templates/home.template',
+const routeTemplates = ['get', 'templates/home.hb',
   function(context){
-    console.log(context);
+    console.log('hi2');
   }
 ]
 

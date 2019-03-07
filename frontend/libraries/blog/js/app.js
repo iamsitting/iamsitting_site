@@ -23,5 +23,5 @@ let app = sammy("#app", function() {
 });
 
 $(document).ready(() => {
-  app.run('#/');
+  app.run('blog/');
 });
