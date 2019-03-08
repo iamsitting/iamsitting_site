@@ -37,7 +37,7 @@ const mutations = {
     state.blogPosts.push(post)
   },
   deleteBlogPost(state, id) {
-    state.blogPosts = state.posts.filter(obj => obj.pk !== id)
+    state.blogPosts = state.blogPosts.filter(obj => obj.pk !== id)
   }
 }
 
