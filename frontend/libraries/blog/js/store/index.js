@@ -1,8 +1,8 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import blogPosts from './blogPosts'
+import blogPosts from './modules/blogPosts'
 
-Vue.use(vuex)
+Vue.use(Vuex)
 
 export default new Vuex.Store({
   modules: {

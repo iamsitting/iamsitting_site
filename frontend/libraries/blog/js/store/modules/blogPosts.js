@@ -1,4 +1,4 @@
-import blogService from './blogService'
+import blogService from 'blog/js/services/blogService'
 
 const state = {
   blogPosts: []
@@ -11,11 +11,21 @@ const getters = {
 }
 
 const actions = {
-  getBlogPosts({commit}) {
+  getBlogPosts({ commit }) {
     blogService.getPosts()
       .then(posts => {
-       commit('setBlogPosts', posts) 
+       commit('setBlogPosts', posts)
       })
+  },
+  addBlogPost({ commit }, post) {
+    blogService.createPost(post)
+      .then(() => {
+        commit('addBlogPost', post)
+      })
+  },
+  deleteBlogPost({ commit }, id) {
+    blogService.deletePost(id)
+    commit('deleteBlogPost', id)
   }
 }
 
@@ -25,9 +35,9 @@ const mutations = {
   },
   addBlogPost(state, post) {
     state.blogPosts.push(post)
-  }
+  },
   deleteBlogPost(state, id) {
-    state.BlogPosts = state.posts.filter(obj => obj.pk !== id)
+    state.blogPosts = state.posts.filter(obj => obj.pk !== id)
   }
 }
 

@@ -13,7 +13,7 @@ module.exports = {
       path.resolve(frontend, 'libraries/base_theme/js/index')
     ],
     blog: [
-      path.resolve(frontend, 'libraries/blog/js/app')
+      path.resolve(frontend, 'libraries/blog/js/index')
     ],
   },
 
