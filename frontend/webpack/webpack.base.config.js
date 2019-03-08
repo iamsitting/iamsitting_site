@@ -35,14 +35,14 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.vue$/,
+        test: /\.js$/,
         exclude: [/node_modules/],
-        use: [
-          {
-            loader: 'vue-loader',
-          }
-        ]
+        use: 'babel-loader'
       }, //js, jsx
+      {
+        test: /\.vue$/,
+        use: 'vue-loader'
+      },
       {
         test: /\.woff2?$|\.ttf$|\.eot$|\.svg$|\.png$|\.jpg$|\.gif$/,
         loader: [
@@ -63,7 +63,8 @@ module.exports = {
       path.resolve(__dirname, '../libraries'),
     ],
     alias: {
-      jquery: "jquery/src/jquery"
+      jquery: "jquery/src/jquery",
+      vue: 'vue/dist/vue'
     }
   }
 }

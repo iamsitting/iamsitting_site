@@ -1,9 +1,11 @@
 import 'bootstrap'
 import 'blog/sass/main.scss'
 import Vue from 'vue'
+import VueResource from 'vue-resource'
 import App from './App.vue'
 import Home from './components/Home.vue'
 
+Vue.use(VueResource);
 new Vue({
   el: '#app',
   template: '<App/>',

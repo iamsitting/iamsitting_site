@@ -28,7 +28,7 @@ var devConfig = {
       {
         test:  /\.(sa|sc|c)ss$/,
         use: [
-          MiniCssExtractPlugin.loader,
+          //MiniCssExtractPlugin.loader,
           'vue-style-loader',
           'css-loader',
           'sass-loader'
