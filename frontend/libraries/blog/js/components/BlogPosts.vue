@@ -1,26 +1,29 @@
 <template>
-  <div class="container">
-    <div class="row">
-      <h1> List of Posts
-      <button class="btn btn-success">Add Post</button>
-      </h1> 
-      <table class="table">
-        <thead>
-          <tr>
-            <th scope="col">#</th>
-            <th scope="col">Title</th>
-            <th scope="col">Author</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr v-for="p in posts">
-            <th scope="row">${p.id}</th>
-            <th scope="row">${p.title}</th>
-            <th scope="row">${p.author}</th>
-          </tr>
-        </tbody>
-      </table>
-    </div>
+  <div class="hello">
+    <p>The data below is added/removed from the SQLite Database using Django's ORM and Rest Framework.</p>
+    <br/>
+    <p>Title</p>
+    <input type="text" placeholder="Hello" v-model="title">
+    <p>Body</p>
+    <input type="text" placeholder="From the other side" v-model="body">
+    <p>subtitle</p>
+    <input type="text" placeholder="From the other side" v-model="subtitle">
+    <br><br>
+    <input 
+      type="submit" 
+      value="Add" 
+      @click="addBlogPost({ title: title, body: body, subtitle: subtitle })" 
+      :disabled="!title || !body">
+
+    <hr/>
+    <h3>Messages on Database</h3>
+    <p v-if="blogPosts.length === 0">No Messages</p>
+    <!-- <div class="msg" v-for="(msg, index) in messages" :key="index">
+        <p class="msg-index">[{{index}}]</p>
+        <p class="msg-subject" v-html="msg.subject"></p>
+        <p class="msg-body" v-html="msg.body"></p>
+        <input type="submit" @click="deleteMessage(msg.pk)" value="Delete" />
+    </div> -->
   </div>
 </template>
 
@@ -32,10 +35,12 @@
     data() {
       return {
         title: "",
+        subtitle: "",
+        body: "",
       };
     },
     computed: mapState({
-      blogPosts: state => state.blogPosts.posts
+      blogPosts: state => state.blogPosts.blogPosts
     }),
     methods: mapActions('blogPosts', [
       'addBlogPost',
