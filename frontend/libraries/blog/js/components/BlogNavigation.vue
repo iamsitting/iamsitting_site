@@ -12,10 +12,7 @@
               <router-link class="nav-link" :to="{ name: 'home'}">Blog</router-link>
             </li>
             <li class="nav-item">
-              <router-link class="nav-link" :to="{ name: 'blog-posts'}">New Post</router-link>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Post Requests</a>
+              <router-link class="nav-link" :to="{ name: 'blog-post'}">New Post</router-link>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#">Sign Up</a>
