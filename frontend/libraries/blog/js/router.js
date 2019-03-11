@@ -15,12 +15,12 @@ export default new Router({
       component: BlogHome
     },
     {
-      path: 'view',
+      path: '/view/:id+',
       name: 'view',
       component: BlogPostView
     },
     {
-      path: 'blog-post',
+      path: '/blog-post',
       name: 'blog-post',
       component: BlogAdmin
     }

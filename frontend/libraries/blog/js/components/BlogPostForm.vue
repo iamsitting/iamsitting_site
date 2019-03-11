@@ -1,13 +1,13 @@
 <template>
   <div>
     <p>Title</p>
-    <input type="text" placeholder="Hello" v-model="title">
+    <input type="text" placeholder="Topic" v-model="title">
     <p>Subtitle</p>
-    <input type="text" placeholder="From the other side" v-model="subtitle">
+    <input type="text" placeholder="Part 1" v-model="subtitle">
     <p>Body</p>
-    <input type="text" placeholder="From the other side" v-model="body">
+    <input type="text" placeholder="Lorem impsum..." v-model="body">
     <p>Category</p>
-    <input type="text" placeholder="From the other side" v-model="category">
+    <input type="text" placeholder="General" v-model="category">
     <br><br>
     <input
       type="submit"
@@ -25,7 +25,7 @@
         title: "",
         subtitle: "",
         body: "",
-        category: 0,
+        category: "",
         author: 0
       };
     },

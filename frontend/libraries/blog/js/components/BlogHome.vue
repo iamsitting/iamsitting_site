@@ -1,15 +1,15 @@
 <template>
   <div>
-    <blog-post-table/></blog-post-table>
+    <blog-post-view/></blog-post-view>
   </div>
 </template>
 
 <script>
-  import BlogPostTable from 'blog/js/components/BlogPostTable.vue'
+  import BlogPostView from 'blog/js/components/BlogPostView.vue'
   export default {
     name: 'BlogHome',
     components: {
-      BlogPostTable
+      BlogPostView
     }
   }
 </script>
