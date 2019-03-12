@@ -1,12 +1,16 @@
 import blogService from 'blog/js/services/blogService'
 
 const state = {
-  blogPosts: []
+  blogPosts: [],
+  blogPost: {}
 }
 
 const getters = {
   blogPosts: state => {
     return state.blogPosts
+  },
+  blogPost: state => {
+    return state.blogPost
   }
 }
 
@@ -26,6 +30,12 @@ const actions = {
   deleteBlogPost({ commit }, id) {
     blogService.deletePost(id)
     commit('deleteBlogPost', id)
+  },
+  getBlogPost({ commit }, id) {
+    blogService.getPost(id)
+      .then(post => {
+        commit('setBlogPost', post)
+      })
   }
 }
 
@@ -38,6 +48,9 @@ const mutations = {
   },
   deleteBlogPost(state, id) {
     state.blogPosts = state.blogPosts.filter(obj => obj.pk !== id)
+  },
+  setBlogPost(state, post) {
+    state.blogPost = post
   }
 }
 

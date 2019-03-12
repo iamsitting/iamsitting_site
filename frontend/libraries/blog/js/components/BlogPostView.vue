@@ -21,13 +21,11 @@
     },
     computed: mapState({
       blogPost: state => {
-        console.log(this);
-        return state.blogPosts.blogPosts.filter(obj => obj.id !== 1)[0]
+        return state.blogPosts.blogPost
       }
     }),
     created() {
-      console.log(this.$route.params.id);
-      this.$store.dispatch('blogPosts/getBlogPosts')
+      this.$store.dispatch('blogPosts/getBlogPost', this.$route.params.id)
     }
   }
 </script>
