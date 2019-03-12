@@ -22,12 +22,10 @@
 
 <style lang="scss">
   @import "~bootstrap/scss/bootstrap";
+
   .blog-app {
     background: url(~base_theme/images/bg.jpg) no-repeat center center fixed;
     color: white;
-  }
-  .hidden {
-    display: none;
   }
   .view-container {
     -webkit-font-smoothing: antialiased;

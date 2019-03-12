@@ -1,9 +1,14 @@
 <template>
-  <div class="blog-view">
+  <div class="container">
+    <div class="blog-view">
     <h1>{{blogPost.title}}</h1>
     <h2>{{blogPost.subtitle}}</h2>
-    <p>{{blogPost.body}}</p>
-    <p>-{{blogPost.author}}</p>
+    <div class="blog-body">
+      <p>{{blogPost.body}}</p>
+      <p>auhor: {{blogPost.author}}</p>
+    </div>
+    <br>
+  </div>
   </div>
 </template>
 
@@ -25,13 +30,41 @@
       }
     }),
     created() {
-      this.$store.dispatch('blogPosts/getBlogPost', this.$route.params.id)
+      let blogId = this.$route.params.id;
+      if (!blogId) {
+        blogId = '1';
+      }
+      this.$store.dispatch('blogPosts/getBlogPost', blogId)
     }
   }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
   .blog-view {
-    color: white;
+    color: black;
+    background-color: white;
+    border-radius: 10px;
+    h1 {
+      font-size: 60px;
+      font-family: sans-serif;
+      padding-top: 5%;
+    }
+
+    h2 {
+      font-size: 20px;
+      font-style: italic;
+      font-family: serif;
+      padding-top: 10px;
+    }
+
+    .blog-body{
+      text-align: justify;
+      padding: 5% 10% 0 10%;
+      p {
+      font-family: 'Times New Roman', Times, serif;
+      font-size: 16px;
+      }
+    }
+
   }
 </style>

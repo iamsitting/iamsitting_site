@@ -1,6 +1,7 @@
 <template>
   <!-- Footer -->
   <footer class="page-footer">
+    <hr>
     <form method="post" action="/contact-me/">
       <div class="field">
         <label for="name">Name</label>
@@ -30,3 +31,12 @@
     name: 'BlogFooter'
   }
 </script>
+
+<style scoped>
+  footer {
+    hr {
+      background-color: white;
+    }
+    padding-top: 5%;
+  }
+</style>
