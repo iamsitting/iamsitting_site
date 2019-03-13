@@ -1,8 +1,8 @@
 <template>
   <div class="container">
     <div class="blog-view">
-    <h1>{{blogPost.title}}</h1>
-    <h2>{{blogPost.subtitle}}</h2>
+    <h1 class="blog-view__title--font">{{blogPost.title}}</h1>
+    <h2 class="blog-view__subtitle--font">{{blogPost.subtitle}}</h2>
     <div class="blog-view__body--container">
       <p class="blog-view__body--font">
         {{blogPost.body}}
@@ -47,14 +47,14 @@
     background-color: white;
     border-radius: 10px;
 
-    h1 {
+    &__title--font {
       font-size: 60px;
       font-family: sans-serif;
       padding-top: 5%;
       text-align: center;
     }
 
-    h2 {
+    &__subtitle--font {
       font-size: 20px;
       font-style: italic;
       font-family: serif;
