@@ -24,9 +24,15 @@
         <div class="col-sm-1">
         </div>
         <div class="col-sm">
-          <p>Adress: Bryan/College Station, Texas</p>
-          <p>Phone: (Just email me.)</p>
-          <p>Email: carlos@iamsitting.com</p>
+          <div class="more-info">
+            <p>Adress: Bryan/College Station, Texas</p>
+          </div>
+          <div class="more-info">
+            <p>Phone: (Just email me.)</p>
+          </div>
+          <div class="more-info">
+            <p>Email: carlos@iamsitting.com</p>
+          </div>
         </div>
       </div>
     </div>
@@ -48,6 +54,12 @@
     hr {
       background-color: white;
     }
-    padding-top: 5%;
+  }
+  .more-info {
+    padding: 10% 0 5% 0;
+    border: 1px solid white;
+  }
+  .footer-copyright {
+    padding: 3%;
   }
 </style>

@@ -1,7 +1,6 @@
 <template>
   <div>
     <blog-post-form/></blog-post-form>
-    <hr/>
     <blog-post-table/></blog-post-table>
   </div>
 </template>
@@ -19,7 +18,4 @@
 </script>
 
 <style scoped>
-  hr {
-    background-color: white;
-  }
 </style>

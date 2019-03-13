@@ -27,11 +27,11 @@
     background: url(~base_theme/images/bg.jpg) no-repeat center center fixed;
     color: white;
   }
-  .view-container {
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    text-align: center;
-    color: white;
-    margin-top: 60px;
-  }
+  // .view-container {
+  //   -webkit-font-smoothing: antialiased;
+  //   -moz-osx-font-smoothing: grayscale;
+  //   text-align: center;
+  //   color: white;
+  //   margin-top: 60px;
+  // }
 </style>

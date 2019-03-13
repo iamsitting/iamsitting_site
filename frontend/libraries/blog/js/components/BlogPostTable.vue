@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <table>
+  <div class="container blog-table__container">
+    <table class="table table-dark table-hover">
         <thead>
           <tr>
             <th>Title</th>
@@ -14,7 +14,7 @@
             <td>{{post.title}}</td>
             <td>{{post.category}}</td>
             <td>{{post.author}}</td>
-            <td>{{post.id}}</td>
+            <td><a v-bind="{href: '#/view/' + post.id}">View</a></td>
           </tr>
         </tbody>
       </table>
@@ -47,8 +47,10 @@
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-table {
-  color: white;
+<style lang="scss" scoped>
+.blog-table{
+  &__container {
+    padding-top: 3%;
+  }
 }
 </style>

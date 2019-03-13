@@ -51,6 +51,7 @@
       font-size: 60px;
       font-family: sans-serif;
       padding-top: 5%;
+      text-align: center;
     }
 
     h2 {
@@ -58,6 +59,7 @@
       font-style: italic;
       font-family: serif;
       padding-top: 10px;
+      text-align: center;
     }
 
     &__body{
