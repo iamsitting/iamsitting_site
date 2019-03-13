@@ -3,9 +3,11 @@
     <div class="blog-view">
     <h1>{{blogPost.title}}</h1>
     <h2>{{blogPost.subtitle}}</h2>
-    <div class="blog-body">
-      <p>{{blogPost.body}}</p>
-      <p>auhor: {{blogPost.author}}</p>
+    <div class="blog-view__body--container">
+      <p class="blog-view__body--font">
+        {{blogPost.body}}
+      </p>
+      <p class="blog-view__author--font">author: {{blogPost.author}}</p>
     </div>
     <br>
   </div>
@@ -44,6 +46,7 @@
     color: black;
     background-color: white;
     border-radius: 10px;
+
     h1 {
       font-size: 60px;
       font-family: sans-serif;
@@ -57,13 +60,23 @@
       padding-top: 10px;
     }
 
-    .blog-body{
-      text-align: justify;
-      padding: 5% 10% 0 10%;
-      p {
+    &__body{
+
+      &--container {
+        text-align: justify;
+        padding: 5% 10% 0 10%;
+      }
+
+      &--font {
       font-family: 'Times New Roman', Times, serif;
       font-size: 16px;
       }
+    }
+
+    &__author--font {
+      font-family: 'Times New Roman', Times, serif;
+      font-size: 16px;
+      font-style: italic;
     }
 
   }

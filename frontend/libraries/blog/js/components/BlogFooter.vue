@@ -2,23 +2,34 @@
   <!-- Footer -->
   <footer class="page-footer">
     <hr>
-    <form method="post" action="/contact-me/">
-      <div class="field">
-        <label for="name">Name</label>
-        <input type="text" name="name" id="name"/>
+    <div class="container">
+      <div class="row">
+        <div class="col-sm">
+          <form method="post" action="/contact-me/">
+            <div class="form-group">
+              <label for="name">Name</label>
+              <input class="form-control" type="text" name="name" id="name"/>
+            </div>
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input class="form-control" type="text" name="email" id="email"/>
+            </div>
+            <div class="form-group">
+              <label for="message">Message</label>
+              <textarea class="form-control" name="message" id="message" rows="3"></textarea>
+            </div>
+            <input class="btn btn-primary" type="submit" value="Send Message" onclick="return confirm('Are you sure?');"/></li>
+          </form>
+        </div>
+        <div class="col-sm-1">
+        </div>
+        <div class="col-sm">
+          <p>Adress: Bryan/College Station, Texas</p>
+          <p>Phone: (Just email me.)</p>
+          <p>Email: carlos@iamsitting.com</p>
+        </div>
       </div>
-      <div class="field">
-        <label for="email">Email</label>
-        <input type="text" name="email" id="email"/>
-      </div>
-      <div class="field">
-        <label for="message">Message</label>
-        <textarea name="message" id="message" rows="3"></textarea>
-      </div>
-      <ul class="actions">
-        <li><input type="submit" value="Send Message" onclick="return confirm('Are you sure?');"/></li>
-      </ul>
-    </form>
+    </div>
     <!-- Copyright -->
     <div id="copyright" class="footer-copyright text-center">
       &copy; 2019 iamsitting
@@ -32,8 +43,8 @@
   }
 </script>
 
-<style scoped>
-  footer {
+<style lang="scss" scoped>
+  .page-footer {
     hr {
       background-color: white;
     }
