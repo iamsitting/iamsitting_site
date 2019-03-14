@@ -13,7 +13,7 @@
           <tr v-for="post in blogPosts">
             <td>{{post.title}}</td>
             <td>{{post.category}}</td>
-            <td>{{post.author}}</td>
+            <td>{{post.author.username}}</td>
             <td><a v-bind="{href: '#/view/' + post.id}">View</a></td>
           </tr>
         </tbody>
@@ -29,7 +29,7 @@
       return {
         title: "",
         category: "",
-        author: "",
+        author: {},
         id: 0,
       };
     },
@@ -48,8 +48,8 @@
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
-.blog-table{
-  &__container {
+.blog-table {
+  @at-root #{&}__container {
     padding-top: 3%;
   }
 }

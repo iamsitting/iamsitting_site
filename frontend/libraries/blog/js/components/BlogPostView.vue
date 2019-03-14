@@ -7,7 +7,7 @@
       <p class="blog-view__body--font">
         {{blogPost.body}}
       </p>
-      <p class="blog-view__author--font">author: {{blogPost.author}}</p>
+      <p v-if="blogPost.author">author: <span class="blog-view__author--font">@{{blogPost.author.username}}</span></p>
     </div>
     <br>
   </div>
@@ -47,14 +47,14 @@
     background-color: white;
     border-radius: 10px;
 
-    &__title--font {
+    @at-root #{&}__title--font {
       font-size: 60px;
       font-family: sans-serif;
       padding-top: 5%;
       text-align: center;
     }
 
-    &__subtitle--font {
+    @at-root #{&}__subtitle--font {
       font-size: 20px;
       font-style: italic;
       font-family: serif;
@@ -62,20 +62,20 @@
       text-align: center;
     }
 
-    &__body{
+    @at-root #{&}__body{
 
-      &--container {
+      @at-root #{&}--container {
         text-align: justify;
         padding: 5% 10% 0 10%;
       }
 
-      &--font {
+      @at-root #{&}--font {
       font-family: 'Times New Roman', Times, serif;
       font-size: 16px;
       }
     }
 
-    &__author--font {
+    @at-root #{&}__author--font {
       font-family: 'Times New Roman', Times, serif;
       font-size: 16px;
       font-style: italic;

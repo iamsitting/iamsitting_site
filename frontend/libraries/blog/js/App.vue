@@ -9,7 +9,7 @@
 </template>
 
 <script>
-  import BlogFooter from 'blog/js/components/BlogFooter.vue'
+  import BlogFooter from 'blog/js/components/footer/BlogFooter.vue'
   import BlogNavigation from 'blog/js/components/BlogNavigation.vue'
   export default {
     name: "App",
@@ -27,11 +27,4 @@
     background: url(~base_theme/images/bg.jpg) no-repeat center center fixed;
     color: white;
   }
-  // .view-container {
-  //   -webkit-font-smoothing: antialiased;
-  //   -moz-osx-font-smoothing: grayscale;
-  //   text-align: center;
-  //   color: white;
-  //   margin-top: 60px;
-  // }
 </style>

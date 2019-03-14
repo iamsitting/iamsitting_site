@@ -23,7 +23,7 @@
           type="submit"
           value="Add"
           class="btn btn-primary"
-          @click="addBlogPost({ title: title, body: body, subtitle: subtitle, category: category, author:2 })"
+          @click="addBlogPost({ title: title, body: body, subtitle: subtitle, category: category, author:1 })"
           :disabled="!title || !body">
       </div>
     </div>
