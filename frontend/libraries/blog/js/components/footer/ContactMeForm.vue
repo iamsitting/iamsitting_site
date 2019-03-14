@@ -44,8 +44,10 @@
             'Content-Type': 'application/x-www-form-urlencoded',
           }
         }).then(response => {
-          if (response.status === '200'){
-            $('#contactMeForm').trigger('reset');
+          if (response.status === 200){
+            this.name = ''
+            this.email = ''
+            this.message = ''
           }
         });
       }

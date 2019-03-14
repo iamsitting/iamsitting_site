@@ -5,7 +5,7 @@ from blog.models import Post
 from django.core.mail import send_mail
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from django.shortcuts import render
-from django.http import HttpResponseRedirect
+from django.http import HttpResponse
 
 debug = logging.getLogger('debugger')
 # Create your views here.
@@ -59,4 +59,4 @@ def contact_me(request):
     message = 'This is message from iamsitting.com.\n ----\n' + request.POST.get('message')
     subject = 'From: ' + name + ' at ' + str(datetime.now())
     send_mail(subject, message, email, ['carlos@iamsitting.com'], fail_silently=False)
-    return HttpResponseRedirect("/")
+    return HttpResponse('Success', status=200)
