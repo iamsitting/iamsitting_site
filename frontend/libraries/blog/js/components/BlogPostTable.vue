@@ -48,9 +48,9 @@
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
-.blog-table {
-  @at-root #{&}__container {
-    padding-top: 3%;
+  .blog-table {
+    @at-root #{&}__container {
+      padding-top: 3%;
+    }
   }
-}
 </style>

@@ -64,7 +64,8 @@ module.exports = {
     ],
     alias: {
       jquery: "jquery/src/jquery",
-      vue: 'vue/dist/vue'
+      vue: 'vue/dist/vue',
+      'vuejs-datatable': 'vuejs-datatable/dist/vuejs-datatable.esm.js'
     }
   }
 }
