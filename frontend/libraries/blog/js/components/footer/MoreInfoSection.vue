@@ -15,9 +15,18 @@
     },
     data() {
       return {
-        addressContent: 'Address: Bryan/College Station, Texas',
-        phoneContent: 'Phone: (Just email me...)',
-        emailContent: 'Email: carlos@iamsitting.com'
+        addressContent: {
+          strong: 'Address',
+          text: 'Remote from Bryan/College Station, Texas'
+        },
+        phoneContent: {
+          strong: 'Phone',
+          text: '(Just email me...)'
+        },
+        emailContent: {
+          strong: 'Email',
+          text: 'carlos@iamsitting.com'
+        }
       }
     }
   }

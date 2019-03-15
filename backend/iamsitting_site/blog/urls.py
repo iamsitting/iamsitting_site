@@ -9,7 +9,7 @@ app_name = "blog"
 urlpatterns = [
     path('api/', include(router.urls)),
     url(r'^view/(?P<slug>[-\w]+)$', views.view_post, name='post'),
-    path('', TemplateView.as_view(template_name='blog/index.html')),
+    path('', TemplateView.as_view(template_name='blog/index.html'), name='home'),
     # url(r'^new-post/$', views.NewPost.as_view(), name='new-post'),
     # url(r'^edit-post/(?P<slug>[-\w]+)$', views.EditPost.as_view(), name='edit-post'),
     # url(r'(?P<status>[ADP])/(?P<id>\d+)$', views.modify_post_status, name='modify-post-status'),

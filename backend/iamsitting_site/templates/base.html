@@ -2,13 +2,11 @@
 {% load staticfiles %}
 {% load widget_tweaks %}
 {% url 'home:home' as home_url %}
-{% url 'home:about_me' as about_me_url %}
 {% url 'home:my_cv' as cv_url %}
 {% url 'home:contact-me' as contact_me %}
 {% url 'accounts:login' as login_url %}
 {% url 'accounts:logout' as logout_url %}
-{% url 'blog:new-post' as newpost_url %}
-{% url 'blog:post-requests' as post_requests_url %}
+{% url 'blog:home' as blog_home_url %}
 <!-- Massively by HTML5 UP html5up.net | @ajlkn Free for personal and commercial
 use under the CCA 3.0 license (html5up.net/license) -->
 <html>
@@ -67,6 +65,9 @@ use under the CCA 3.0 license (html5up.net/license) -->
           <li {% if request.path == home_url %} class="active" {% endif %}>
             <a href="{{ home_url }}" id="home-link">Home</a>
           </li>
+          <li>
+            <a href="{{ blog_home_url }}" id="blog-home-url">Blog</a>
+          </li>
           {% if user.is_authenticated %}
           <li {% if request.path == newpost_url %} class="active" {% endif %}>
             <a href="{{ newpost_url }}" id="new-post-link">New Post</a>
@@ -80,9 +81,6 @@ use under the CCA 3.0 license (html5up.net/license) -->
             <a href="{{logout_url}}">Logout</a>
           </li>
           {% endif %}
-          <li {% if request.path == about_me_url %} class="active" {% endif %}>
-            <a href="{{ about_me_url }} " id="about-me-link">About Me</a>
-          </li>
           <!--li {% if request.path == cv_url %} class="active" {% endif %}>
             <a href="{{ cv_url }}" target="_blank">CV</a>
           </li-->

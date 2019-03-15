@@ -1,6 +1,6 @@
 <template>
   <div class="more-info">
-    <p>{{content}}</p>
+    <p><strong>{{content.strong}}: </strong>{{content.text}}</p>
   </div>
 </template>
 
@@ -18,7 +18,7 @@
     //padding: 10% 0 5% 25%;
     margin-top: 12%;
     padding-top: 5%;
-    text-align: center;
+    padding-left: 12%;
     border: 1px solid white;
   }
 </style>
