@@ -46,6 +46,7 @@
     color: black;
     background-color: white;
     border-radius: 10px;
+    margin-top: 5%;
 
     @at-root #{&}__title--font {
       font-size: 60px;

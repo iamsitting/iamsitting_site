@@ -9,6 +9,7 @@
 </template>
 
 <script>
+  import 'bootstrap'
   import BlogFooter from 'blog/js/components/footer/BlogFooter.vue'
   import BlogNavigation from 'blog/js/components/BlogNavigation.vue'
   export default {

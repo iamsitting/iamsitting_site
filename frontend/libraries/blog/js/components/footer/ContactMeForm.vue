@@ -20,6 +20,18 @@
   import Cookies from 'js-cookie'
   import axios from 'axios'
   import qs from 'qs'
+
+  const axiosConfig = data => {
+    return {
+      method: 'post',
+      url: '/contact-me/',
+      data: qs.stringify(data),
+      headers: {
+        'X-CSRFToken': Cookies.get('csrftoken'),
+        'Content-Type': 'application/x-www-form-urlencoded',
+      }
+    }
+  }
   export default {
     name: 'ContactMeForm',
     data() {
@@ -31,19 +43,11 @@
     },
     methods: {
       processForm: function() {
-        axios({
-          method: 'post',
-          url: '/contact-me/',
-          data: qs.stringify({
-            name: this.name,
-            email: this.email,
-            message: this.message
-          }),
-          headers: {
-            'X-CSRFToken': Cookies.get('csrftoken'),
-            'Content-Type': 'application/x-www-form-urlencoded',
-          }
-        }).then(response => {
+        axios(axiosConfig({
+          name: this.name,
+          email: this.email,
+          message: this.message
+        })).then(response => {
           if (response.status === 200){
             this.name = ''
             this.email = ''
