@@ -83,6 +83,9 @@ use under the CCA 3.0 license (html5up.net/license) -->
           <li {% if request.path == about_me_url %} class="active" {% endif %}>
             <a href="{{ about_me_url }} " id="about-me-link">About Me</a>
           </li>
+          <li {% if request.path == '/demo' %} class="active" {% endif %}>
+            <a href="/demo " id="demo-link">Demo</a>
+          </li>
           <!--li {% if request.path == cv_url %} class="active" {% endif %}>
             <a href="{{ cv_url }}" target="_blank">CV</a>
           </li-->
